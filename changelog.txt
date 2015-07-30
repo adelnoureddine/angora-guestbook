@@ -1,0 +1,33 @@
+===============
+== CHANGELOG ==
+===============
+
+Angora Guestbook
+Version 1.6 -> 1.6.1
+
+
+CHANGES
+--------
+
+Fix file disclosure on backup directory
+Fix mobile statistics
+Add Windows Phone and Symbian to statistics
+Fix local file inclusion in index.php
+
+
+MODIFIES FILES
+---------------
+
+index.php
+configuration.php
+
+classes/manage/stats.class.php
+classes/manage/statistics.class.php
+
+
+ADDED FILES
+------------
+
+admin/backup/index.html
+images/os/icon_windows_phone.png
+images/os/icon_symbian.png

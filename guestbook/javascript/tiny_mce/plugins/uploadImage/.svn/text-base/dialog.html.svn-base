@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Upload Images</title>
+
+<style>
+body
+{
+	font-family : "Trebuchet MS", sans-serif;
+	background-color : #F3F3F3;
+	color : black;
+	font-size : 16px;
+	vertical-align : middle;
+	margin : 10px;
+}
+
+fieldset {border : 0px;}
+
+img {border : 0px;}
+
+a, a.link {
+	color : blue;
+	background-color : transparent;
+	text-decoration : none;
+}
+
+a:hover {text-decoration : underline;}
+
+input[type="text"], input[type="password"], textarea {
+    color : #555753;
+    background-color : #fff;
+    border : 2px solid #d3d7cf;
+    border-top : 2px solid #babdb6;
+    border-left : 2px solid #babdb6;
+    padding : 3px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    color : #000;
+    background-color : #fff;
+    border : 2px solid #3465a4;
+}
+
+input[type="submit"], input[type="button"] {
+	color : #F9F8F7;
+	background-color : #4A7DAC;
+	border-top-style : none;
+	border-right-style : none;
+	border-left-style : none;
+	border-bottom-style : none;
+	cursor : pointer;
+}
+</style>
+
+</head>
+
+<body>
+<p>Be sure to copy the given link and use it to insert the image to the guestbook</p>
+
+<script type="text/javascript">
+tinypic_layout = 'narrow';
+tinypic_type = 'images';
+tinypic_links = 'url';
+tinypic_language = 'en';
+tinypic_search = 'false';
+tinypic_autoload = true;
+</script>
+<script src="http://plugin.tinypic.com/j/plugin.js" type="text/javascript"></script>
+
+</body>
+</html>

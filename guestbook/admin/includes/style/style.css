@@ -1,0 +1,231 @@
+.login
+{
+	vertical-align : middle;
+	margin : auto;
+	width : 275px;
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 20px;
+	text-align : center;
+	border : 3px solid #050F72;
+}
+
+.centerText
+{
+	vertical-align : middle;
+	margin : auto;
+	width : 600px;
+}
+
+.forgotPass
+{
+	vertical-align : middle;
+	margin : auto;
+	width : 275px;
+	background-color : transparent;
+	color : black;
+	font-size : 12px;
+	text-align : center;
+	font-style : italic;
+}
+
+.forgotPassText
+{
+	margin : auto;
+	background-color : transparent;
+	color : black;
+	font-size : 14px;
+}
+
+.logo
+{
+	vertical-align : middle;
+	margin : auto;
+	width : 360px;
+	background-color : transparent;
+	color : #F9F8F7;
+	font-size : 20px;
+	text-align : center;
+}
+
+.msgError
+{
+	color : white;
+	background-color : #8b0000;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.msgSuccess
+{
+	color : white;
+	background-color : green;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.panel a, a.href
+{
+	color : #050F72;
+	background-color : transparent;
+}
+
+.startBox
+{
+	width : 300px;
+	color : white;
+	background-color : #4A7DAC;
+	padding : 5px;
+	margin : 5px;
+}
+
+.startBox a, a.href
+{
+	color : white;
+	background-color : transparent;
+}
+
+.updateLinksLow {
+	background-color : #a9a9a9;
+}
+
+.updateLinksHigh {
+	background-color : #cd0909;
+}
+
+.titleMsg
+{
+	color : #0B70CE;
+	background-color : transparent;
+}
+
+.mainTitle
+{
+	font-size : 20px;
+	color : #0B70CE;
+	background-color : transparent;
+	border-bottom : 1px solid #4A7DAC;
+	margin : 5px;
+}
+
+.tableTitle
+{
+	font-size : 18px;
+	color : white;
+	background-color : #4A7DAC;
+}
+
+.adminTitle
+{
+	color : #0B70CE;
+	background-color : transparent;
+	font-size : 18px;
+}
+
+.borderTable
+{
+	border : 1px solid #4A7DAC;
+}
+
+.helpPopup
+{
+	font-size : 12px;
+}
+
+.alignRight
+{
+	text-align : right;
+}
+
+.alignLeft
+{
+	text-align : left;
+}
+
+/*********************/
+/* For posts viewing */
+/*********************/
+
+.posts
+{
+	margin : 10px auto;
+	border : 1px solid black;
+}
+
+.message
+{
+	color : black;
+	background-color : white;
+}
+
+.topInfos
+{
+	color: black;
+	background-color: #ecdfdf;
+}
+
+.topInfos a, a.href
+{
+	color: black;
+	background-color: transparent;
+}
+
+.tablePosts
+{
+	margin : 0px auto;
+	width : 100%;
+	background-color : #ecdfdf;
+	border : 0px solid black;
+}
+
+.tableReply
+{
+	margin : 0px auto;
+	width : 80%;
+	background-color : #ecdfdf;
+	border : 1px solid black;
+}
+
+.topInfosActions
+{
+	color: white;
+	background-color: #4A7DAC;
+}
+
+.topInfosActions a, a.href
+{
+	color: white;
+	background-color: transparent;
+}
+
+.topInfosActionsUnpublished
+{
+	color: white;
+	background-color: red;
+}
+
+.topInfosActionsUnpublished a, a.href
+{
+	color: white;
+	background-color: transparent;
+}
+
+/******************/
+/* For page Links */
+/******************/
+
+.pageLinks
+{
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+	width : 500px;
+}
+
+.pageLinks a, a.link
+{
+	color : #F9F8F7;
+	background-color : transparent;
+}

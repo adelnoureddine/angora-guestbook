@@ -1,0 +1,124 @@
+#wrapper
+{
+	border: 0px;
+	margin: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+}
+
+#header
+{
+	background-color: #FFF;
+	background-position: right top;
+	border-bottom: 4px solid #C64934;
+	background: url(../images/header_bg.png);
+	color : white;
+	font-size : 20px;
+	text-align : center;
+}
+
+#continue
+{
+	width : 100%;
+	text-align : right;
+	font-size : 18px;
+}
+
+#previous
+{
+	width : 100%;
+	text-align : left;
+	font-size : 18px;
+}
+
+.table
+{
+	width : 75%;
+	text-align : center;
+}
+
+.title
+{
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 20px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.ok
+{
+	background-color : transparent;
+	color : green;
+}
+
+.no
+{
+	background-color : transparent;
+	color : red;
+}
+
+.license
+{
+	padding: 0px;
+	width: 550px;
+	height: 300px;
+}
+
+.msgError
+{
+	color : white;
+	background-color : #8b0000;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.msgSuccess
+{
+	color : white;
+	background-color : green;
+	text-align : center;
+	margin : 5px auto;
+}
+
+/*******************
+* For password check
+********************/
+
+#passwordStrength
+{
+	height:10px;
+	display:block;
+	float:left;
+}
+
+.strength1
+{
+	width:25px;
+	background:#ff0000;
+}
+
+.strength2
+{
+	width:50px;	
+	background:#ff5f5f;
+}
+
+.strength3
+{
+	width:75px;
+	background:#56e500;
+}
+
+.strength4
+{
+	background:#4dcd00;
+	width:100px;
+}
+
+.strength5
+{
+	background:#399800;
+	width:125px;
+}

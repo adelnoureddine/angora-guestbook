@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /classes/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /javascript/
+Disallow: /languages/
+Disallow: /themes/
+Disallow: configuration.php
+Disallow: data.php

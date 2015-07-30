@@ -1,0 +1,153 @@
+.content
+{
+	vertical-align : middle;
+	margin : 5px auto;
+	width : 500px;
+}
+
+.title
+{
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 20px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.menu
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.footNotes
+{
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.footNotes a, a.link
+{
+	color : #F9F8F7;
+	background-color : transparent;
+}
+
+.searchBox
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.pageLinks
+{
+	background-color : #4A7DAC;
+	color : #F9F8F7;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+	width : 500px;
+}
+
+.pageLinks a, a.link
+{
+	color : #F9F8F7;
+	background-color : transparent;
+}
+
+.posts
+{
+	margin : 10px auto;
+	border : 1px solid white;
+}
+
+.message
+{
+	color : black;
+	vertical-align: top;
+	background-image: url('gbback.jpg');
+	font-size : 16px;
+}
+
+.topInfos
+{
+	color: white;
+	background-color: #ecdfdf;
+	background-image: url('gbfiller.jpg');
+	font-size : 12px;
+}
+
+.topInfos a, a.href
+{
+	color: white;
+	background-color: transparent;
+}
+
+.tablePosts
+{
+	margin : 0px auto;
+	width : 100%;
+	background-color : transparent;
+	border : 0px solid black;
+}
+
+.tableReply
+{
+	margin : 0px auto;
+	width : 80%;
+	background-color : transparent;
+	border : 1px solid white;
+}
+
+.statistics
+{
+	width : 100%;
+	margin : 5px auto;
+}
+
+.statistics a, a.href
+{
+	color : white;
+	background-color : transparent;
+}
+
+.stats
+{
+	border : 1px solid black;
+}
+
+.topStats
+{
+	color : #F9F8F7;
+	background-color : #4A7DAC;
+}
+
+.signError
+{
+	color : white;
+	background-color : #8b0000;
+	text-align : center;
+}
+
+.signOK
+{
+	color : black;
+	background-color : transparent;
+	text-align : center;
+}
+
+.signOK a, a.href
+{
+	font-size : 12px;
+}
+
+.countriesTitle
+{
+	text-align : center;
+	color : white;
+	background-color : #4A7DAC;
+}
