@@ -8,7 +8,7 @@ $boxContent = new XTemplate('./themes/' . $config['guestbookTheme'] . '/content/
 include_once 'classes/manage/stats.class.php';
 $stats = new Stats();
 
-$durationId = secureVar($_GET['d'], 'html');
+$durationId = isset($_GET['d']) ? secureVar($_GET['d'], 'html') : "";
 $lastMonthSeconds = time() - 2629743;
 
 if ($durationId == 'lastmonth') {
