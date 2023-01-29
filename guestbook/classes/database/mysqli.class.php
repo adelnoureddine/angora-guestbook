@@ -87,7 +87,7 @@ class AngoraMySQLi implements SQL {
 		$this->query = @mysqli_query($this->connection, $queryData);
 		if ($this->query) {
 			$i = 0;
-			while (($row = @mysqli_fetch_array($this->query, MYSQL_ASSOC))) {
+			while (($row = @mysqli_fetch_assoc($this->query))) {
 				$this->queryResult[$i] = $row;
 				$i++;
 			}
@@ -149,6 +149,11 @@ class AngoraMySQLi implements SQL {
 	function getQueriesDebug() {
 		return $this->queriesDebug;
 	}
+
+	function real_escape_string($string) {
+		return mysqli_real_escape_string($this->connection, $string);
+	}
+	
 	
 }
 
