@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 echo '<div>
 	<div class="title">' . $lang['mysqlInstallation'] . '</div>';
 
@@ -52,9 +52,9 @@ if ($installCheck['hidden'] == 'Lupa') {
 		// Installing
 		
 		require_once '../classes/database/sql.class.php';
-		require_once '../classes/database/mysql.class.php';
+		require_once '../classes/database/mysqli.class.php';
 		
-		$con = new AngoraMySQL();
+		$con = new AngoraMySQLi();
 		$con->setCon($installCheck['host'], $installCheck['username'], $installCheck['password'], $installCheck['database']);
 		$con->connect();
 		
@@ -81,7 +81,8 @@ if ($installCheck['hidden'] == 'Lupa') {
 					$sql = preg_replace('/#__/', $installCheck['prefix'], $sql);
 					@$con->modify($sql);
 					
-					if (mysql_error() != "")
+					if ($con->printError() != "")
+						
 						$instDone = false;
 					$sql="";
 				}
