@@ -6,7 +6,7 @@ if (@$magic != "0xDEADBEEF")
 	echo '<div class="mainTitle">' . $lang['optimize'] . ' ' . $lang['database'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'optimize\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	$optimizeResults = array();
 	
