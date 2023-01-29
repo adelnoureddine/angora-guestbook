@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
@@ -153,7 +153,7 @@ $lang['checkCaptcha'] = "Utiliser CAPTCHA&nbsp;?";
 $lang['debug'] = "Mode debug&nbsp;?";
 $lang['reCaptcha'] = "Utiliser reCaptcha?";
 $lang['reCaptchapubk'] = "Clé publique reCaptcha";
-$lang['reCaptchaprvk'] = "Clé privée reCaptcha"
+$lang['reCaptchaprvk'] = "Clé privée reCaptcha";
 
 $lang['changeLanguages'] = "Changer de langue";
 $lang['guestbookLang'] = "Langue du livre d'or";
