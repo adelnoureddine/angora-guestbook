@@ -1,9 +1,9 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
-if (($_SESSION['nameField'] == "") || ($_SESSION['messageField'] == "") || ($_SESSION['hiddenField'] == "") || ($_SESSION['captchaField'] == "") || ($_SESSION['emailField'] == "")) {
+if ((!isset($_SESSION['nameField']) || $_SESSION['nameField'] == "") || (!isset($_SESSION['messageField']) || $_SESSION['messageField'] == "") || (!isset($_SESSION['hiddenField']) || $_SESSION['hiddenField'] == "") || (!isset($_SESSION['captchaField']) || $_SESSION['captchaField'] == "") || (!isset($_SESSION['emailField']) || $_SESSION['emailField'] == "")) {
 	session_regenerate_id();
 	$_SESSION['nameField'] = md5(uniqid(rand(), true));
 	$_SESSION['messageField'] = md5(uniqid(rand(), true));
@@ -31,7 +31,7 @@ function showStar(star){
 $boxContent->assign("SCRIPTS", $scriptInclude);
 
 // Check if already send
-$submitId = secureVar($_POST['submit'], 'html');
+$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : "";
 
 $boxContent->assign("FORM_NAME", 'signForm');
 $boxContent->assign("URL_SIGN", 'index.php?a=sign');
@@ -69,7 +69,9 @@ if ((! empty($submitId)) && isset($submitId)) {
 	$signCheck['email'] = secureVar(trim($_POST[$_SESSION['emailField']]), 'html');
 	$signCheck['rating'] = secureVar(trim($_POST['rating']), 'html');
 	$signCheck['message'] = secureVar(trim($_POST[$_SESSION['messageField']]), 'html');
-	$signCheck['captcha'] = secureVar(trim($_POST[$_SESSION['captchaField']]), 'html');
+	if (array_key_exists($_SESSION['captchaField'], $_POST)) {
+		$signCheck['captcha'] = secureVar(trim($_POST[$_SESSION['captchaField']]), 'html');
+	} 
 	$signCheck['hiddenField'] = secureVar(trim($_POST[$_SESSION['hiddenField']]), 'html');
 
 	if ($signCheck['hiddenField'] != '') {
@@ -282,7 +284,7 @@ foreach ($ratingArray as $id_rate => $rate_value)
 }
 
 if ($config['checkCaptcha'] && !$config['reCaptcha']) {
-	$boxContent->assign("CAPTCHA_FIELD", $_SESSION['captchaField']);
+	$boxContent->assign("CAPTCHA_FIELD", isset($_SESSION['captchaField']) ? $_SESSION['captchaField'] : "");
 	$boxContent->assign("LANG_CAPTCHA", $lang['captcha']);
 	$boxContent->assign("CAPTCHA", $captcha);
 	$boxContent->parse('sign.signForm.captcha');
