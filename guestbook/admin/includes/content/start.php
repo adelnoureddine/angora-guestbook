@@ -105,7 +105,7 @@ if (@$magic != "0xDEADBEEF")
 			if ($i >= 5)
 				break;
 			else {
-				echo "<a title=\"News\" href=\"" . $value->link . "\" target=\"_blank\">" . utf8_decode($value->title) ."</a>\n";
+				echo "<a title=\"News\" href=\"" . $value->link . "\" target=\"_blank\">" . mb_convert_encoding($value->title, 'ISO-8859-1', 'UTF-8') ."</a>\n";
 				echo '<br />';
 				$i++;
 			}
