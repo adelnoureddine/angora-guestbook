@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 session_start();
 session_regenerate_id();
 
