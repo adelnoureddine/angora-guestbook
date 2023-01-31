@@ -1,5 +1,7 @@
 <?php
 use guestbook\Error;
+
+$magic = isset($magic) ? $magic : "";
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
@@ -35,7 +37,7 @@ $submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : "";
 
 $boxContent->assign("FORM_NAME", 'signForm');
 $boxContent->assign("URL_SIGN", 'index.php?a=sign');
-$boxContent->assign("LANG_NAME", $lang['name']);
+$boxContent->assign("LANG_NAME", isset($lang) ? $lang['name'] : "");
 $boxContent->assign("NAME_FIELD", $_SESSION['nameField']);
 $boxContent->assign("LANG_MESSAGE", $lang['message']);
 $boxContent->assign("MESSAGE_FIELD", $_SESSION['messageField']);
@@ -128,7 +130,7 @@ if ((! empty($submitId)) && isset($submitId)) {
 		$errorField .= $lang['message'] . ' ' . $lang['isBig'] . ' (' . strlen($signCheck['message']) . '/' . $config['maxCharMsg'] . ')<br />';
 
 	$con->connect();
-	$con->getRows("Select ip from " . $dbTables['ip'] . ";");
+	$con->getRows("Select ip from " . (isset($dbTables) ? $dbTables['ip'] : "") . ";");
 	if ($con->getNumRows() > 0) {
 		foreach ($con->queryResult as $res) {
 			if (preg_match("/^" . $res['ip'] . "/", $_SERVER['REMOTE_ADDR'])) {
