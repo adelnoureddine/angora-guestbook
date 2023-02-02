@@ -59,7 +59,7 @@ class AngoraMySQLi implements SQL {
 	/**	
 	* Connect to the database
 	* */
-		function connect() {
+	function connect() {
 		try {
 			$this->connection = @mysqli_connect($this->datahost, $this->username, $this->userpass, $this->database, 3306);
 			if (!$this->connection) {
