@@ -6,7 +6,7 @@ session_regenerate_id();
 
 $magic = "0xDEADBEEF";
 $lang = array();
-
+use guestbook\Error;
 include_once 'classes/error/error.class.php';
 include_once 'includes/checks.php';
 
@@ -24,9 +24,10 @@ if ($config['debug']) {
 }
 
 // Language settings
-$langName = secureVar($_GET['l'], 'html');
 
-if (preg_match('#/#',$langName))
+$langName = isset($_GET['l']) ? secureVar($_GET['l'], 'html') : "";
+
+if (preg_match('#/#', $langName))
 	$langName = $config['guestbookLang'];
 
 if (! empty($langName))
@@ -50,7 +51,7 @@ if ($config['reCaptcha'])
 // Theme settings
 include_once 'classes/xtpl/xtemplate.class.php';
 
-$themeName = secureVar($_GET['t'], 'html');
+$themeName = isset($_GET['t']) ? secureVar($_GET['t'], 'html') : "";
 
 if (! empty($themeName))
 	$_SESSION['themeName'] = $themeName;
@@ -83,7 +84,7 @@ require_once 'includes/boxes/menu.php';
 $global->assign("MENU_BOX", $boxContent);
 
 $headIncludes = "";
-$pageName = secureVar($_GET['a'], 'html');
+$pageName = isset($_GET['a']) ? secureVar($_GET['a'], 'html') : "";
 
 if (! empty($pageName)) {
 	switch ($pageName) {
@@ -173,7 +174,7 @@ if (empty($pageName) || !file_exists("includes/content/" . $pageName . ".php")) 
 	if (
 	((! empty($postId)) && isset($postId) && is_numeric($postId))
 	|| ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2))
-	|| ((!empty($searchId)) && isset($searchId) && ($searchId != "") && ($searchId != $lang['searchInput']))
+	|| ((!empty($searchId)) && isset($searchId) && ($searchId != "") && !(isset($lang['searchInput']) && $searchId == $lang['searchInput']))
 	|| ($config['pagesFormat'] == 'allinone')
 	) {} else {
 		$con->connect();

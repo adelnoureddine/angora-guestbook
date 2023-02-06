@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
@@ -8,22 +8,26 @@ if (@$magic != "0xDEADBEEF")
 		die($error->showError());
 	}
 	
-	ob_start();
-	phpinfo();
+	if (ob_start()) {
+		phpinfo();
 	
-	preg_match ('%<style type="text/css">(.*?)</style>.*?<body>(.*?)</body>%s', ob_get_clean(), $matches);
+		preg_match ('%<style type="text/css">(.?)</style>.?<body>(.*?)</body>%s', ob_get_contents(), $matches);
 	
-	echo "<div class='phpinfodisplay'><style type='text/css'>\n",
-	    join( "\n",
-	        array_map(
-	            create_function(
-	                '$i',
-	                'return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );'
-	                ),
-	            preg_split( '/\n/', $matches[1] )
-	            )
-	        ),
-	    "</style>\n",
-	    $matches[2],
-	    "\n</div>\n";
+		echo "<div class='phpinfodisplay'><style type='text/css'>\n",
+			join( "\n",
+				array_map(
+					create_function(
+						'$i',
+						'return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );'
+						),
+					preg_split( '/\n/', $matches[1] )
+					)
+				),
+			"</style>\n",
+			$matches[2],
+			"\n</div>\n";
+	
+		ob_end_clean();
+	}
+
 ?>

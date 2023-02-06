@@ -22,7 +22,7 @@ echo '<div>
 			<td>' . $lang['mysqlSupport'] . '</td>
 			<td>';
 
-			if (function_exists('mysql_connect'))
+			if (function_exists('mysqli_connect'))
 				echo '<span class="ok">' . $lang['ok'] . '</span>';
 			else {
 				echo '<span class="no">' . $lang['no'] . '</span>';
@@ -35,10 +35,10 @@ echo '<div>
 			<td>' . $lang['mysqlVersion'] . '</td>
 			<td>';
 
-			if (mysql_get_client_info() >= 4.1)
+			if (mysqli_get_client_info() >= 4.1)
 				echo '<span class="ok">' . $lang['ok'] . '</span>';
 			else {
-				echo '<span class="no">' . $lang['no'] . ' - ' . mysql_get_client_info() . '</span>';
+				echo '<span class="no">' . $lang['no'] . ' - ' . mysqli_get_client_info() . '</span>';
 			}
 
 		echo '</td>

@@ -1,14 +1,14 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
 	echo '<div class="mainTitle">' . $lang['uploadCenter'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'upload\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
-	$deleteFile = secureVar($_GET['file'], 'html');
+	$deleteFile = isset($_GET['file']) ? secureVar($_GET['file'], 'html') : '';
 		
 	if ((! empty($deleteFile)) && isset($deleteFile)) {
 		$deleteFileFolder = secureVar($_GET['dir'], 'html');

@@ -12,7 +12,7 @@
  * The Error class file                             *
  ****************************************************
  * */
-
+namespace guestbook;
 class Error {
 
 	private $errorText;

@@ -1,9 +1,9 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
-$submitId = secureVar($_POST['submit'], 'html');
+$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 if ((! empty($submitId)) && isset($submitId)) {
 	$forgotPassCheck['email'] = secureVar(trim($_POST['emailField']), 'html');

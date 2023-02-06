@@ -8,21 +8,21 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 require_once 'data.php';
 include_once 'classes/error/error.class.php';
 
-$config['mysqlDriver'] = 'mysql';
+$config['mysqlDriver'] = 'mysqli';
 
 require_once 'classes/database/sql.class.php';
 switch ($config['mysqlDriver']) {
 	case 'mysql' :
-		require_once 'classes/database/mysql.class.php';
-		$con = new AngoraMySQL();
+		require_once 'classes/database/mysqli.class.php';
+		$con = new AngoraMySQLi();
 		break;
 	case 'mysqli' :
 		require_once 'classes/database/mysqli.class.php';
 		$con = new AngoraMySQLi();
 		break;
 	default :
-		require_once 'classes/database/mysql.class.php';
-		$con = new AngoraMySQL();
+		require_once 'classes/database/mysqli.class.php';
+		$con = new AngoraMySQLi();
 }
 
 $con->setCon(base64_decode($data['dbHost']),

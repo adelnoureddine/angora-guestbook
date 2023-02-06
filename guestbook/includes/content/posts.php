@@ -1,16 +1,16 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
 // Get post id
-$postId = secureVar($_GET['id'], 'html');
+$postId = isset($_GET['id']) ? secureVar($_GET['id'], 'html') : "";
 
 // Get flag
-$countryId = secureVar($_GET['cc'], 'html');
+$countryId = isset($_GET['cc']) ? secureVar($_GET['cc'], 'html') : "";
 
 // Get search query
-$searchId = secureVar($_POST['s'], 'html');
+$searchId = isset($_POST['s']) ? secureVar($_POST['s'], 'html') : "";
 
 $boxContent = new XTemplate('./themes/' . $config['guestbookTheme'] . '/content/posts.tpl');
 
@@ -34,7 +34,7 @@ elseif ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2)) 
 }
 
 // Get search
-elseif ((!empty($searchId)) && isset($searchId) && ($searchId != "") && ($searchId != $lang['searchInput'])) {
+elseif ((!empty($searchId)) && isset($searchId) && ($searchId != "") && !(isset($lang['searchInput']) && $searchId == $lang['searchInput'])) {
 	
 	$searchUsed = true;
 
@@ -107,7 +107,7 @@ if ($con->getNumRows() > 0) {
 		// Get data, format it if necessary, and publish it
 		$userAgent = new Statistics($res['useragent']);
 		$countryName = new Countries();
-		$messageValue = Message::formatMessage(secureVar($res['message'], 'html'), $censoredList, $censoredLists);
+		$messageValue = Message::formatMessage(secureVar($res['message'], 'html'), $censoredList, isset($censoredLists) ? $censoredLists : []);
 		$messageValue = Message::formatSmilies($messageValue, null, $smiliesReplacement);
 				
 		$boxContent->assign("DATE", date($config['dateFormat'], secureVar($res['date'], 'html')));
@@ -127,7 +127,7 @@ if ($con->getNumRows() > 0) {
 
 		// Admin reply
 		if ($res['rid'] != NULL) {
-			$messageValue = Message::formatMessage(secureVar($res['rmessage'], 'html'), $censoredList, $censoredLists);
+			$messageValue = Message::formatMessage(secureVar($res['rmessage'], 'html'), $censoredList, isset($censoredLists) ? $censoredLists : []);
 			$messageValue = Message::formatSmilies($messageValue, null, $smiliesReplacement);
 			
 			$boxContent->assign("AD_NAME", secureVar(base64_decode($res['rname']), 'html'));

@@ -1,11 +1,11 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 
-	$actionId = secureVar($_GET['action'], 'html');
+	$actionId = isset($_GET['action']) ? secureVar($_GET['action'], 'html') : '';
 	
 	$pageNum = 1;
 	// Get page number
@@ -13,7 +13,7 @@ if (@$magic != "0xDEADBEEF")
 		$pageNum = secureVar($_GET['p'], 'html');
 	
 	// Get page type
-	$typeId = secureVar($_GET['t'], 'html');
+	$typeId = isset($_GET['t']) ? secureVar($_GET['t'], 'html') : '';
 	$databaseName = $dbTables['posts'];
 	$isTrash = false;
 	if ((! empty($typeId)) && isset($typeId) && ($typeId == 'trash')) {
@@ -25,7 +25,7 @@ if (@$magic != "0xDEADBEEF")
 		echo '<div class="mainTitle">' . $lang['trash'] . '</div>';
 		echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'trash\');">' . $lang['help'] . '</a></div>';
 		
-		$submitEmptyTrash = secureVar($_POST['submitEmptyTrash'], 'html');
+		$submitEmptyTrash = isset($_POST['submitEmptyTrash']) ? secureVar($_POST['submitEmptyTrash'], 'html') : '';
 		if ((! empty($submitEmptyTrash)) && isset($submitEmptyTrash)) {
 			$con->connect();
 			$queryMsg = "TRUNCATE TABLE " . $dbTables['trash'] . ";";
@@ -52,7 +52,7 @@ if (@$magic != "0xDEADBEEF")
 	}	
 	
 	$searchUsed = false;
-	$postActionId = secureVar($_GET['postid'], 'html');
+	$postActionId = isset($_GET['postid']) ? secureVar($_GET['postid'], 'html') : '';
 	
 	if ((! empty($actionId)) && isset($actionId)) {
 		$con->connect();
@@ -123,7 +123,7 @@ if (@$magic != "0xDEADBEEF")
 		$con->close();
 	}
 	
-	$messageData = secureVar($_POST['modifyMessage'], 'html');
+	$messageData = isset($_POST['modifyMessage']) ? secureVar($_POST['modifyMessage'], 'html') : '';
 		
 	if ((! empty($messageData)) && isset($messageData)) {
 		$con->connect();
@@ -138,7 +138,7 @@ if (@$magic != "0xDEADBEEF")
 		unset($submitId);
 	}
 	
-	$replyData = secureVar($_POST['replyMessage'], 'html');
+	$replyData = isset($_POST['replyMessage']) ? secureVar($_POST['replyMessage'], 'html') : '';
 		
 	if ((! empty($replyData)) && isset($replyData)) {
 		$con->connect();
@@ -163,7 +163,7 @@ if (@$magic != "0xDEADBEEF")
 		unset($submitId);
 	}
 	
-	$replyAdminData = secureVar($_POST['modifyReplyMessage'], 'html');
+	$replyAdminData = isset($_POST['modifyReplyMessage']) ? secureVar($_POST['modifyReplyMessage'], 'html') : '';
 		
 	if ((! empty($replyAdminData)) && isset($replyAdminData)) {
 		$con->connect();
@@ -178,7 +178,7 @@ if (@$magic != "0xDEADBEEF")
 		unset($submitId);
 	}
 	
-	$checkedItems = $_POST['checkedItems'];
+	$checkedItems = isset($_POST['checkedItems']) ? $_POST['checkedItems'] : '';
 	if(! empty($checkedItems) && isset($checkedItems)) {
 		$result = false;
 		$items = explode(',', $checkedItems);
@@ -323,10 +323,10 @@ if (@$magic != "0xDEADBEEF")
 	}
 	
 	// Get post id
-	$postId = secureVar($_GET['id'], 'html');
+	$postId = isset($_GET['id']) ? secureVar($_GET['id'], 'html') : '';
 	
 	// Get flag
-	$countryId = secureVar($_GET['cc'], 'html');
+	$countryId = isset($_GET['cc']) ? secureVar($_GET['cc'], 'html') : '';
 	
 	if ((! empty($postId)) && isset($postId) && is_numeric($postId))
 		$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $databaseName . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.id=\"" . secureVar($postId, 'sql')  . "\";";
@@ -510,7 +510,7 @@ if (@$magic != "0xDEADBEEF")
 			else {
 				$globalActionsMenu = '<input type="submit" name="delete" value="' . $lang['pDelete'] . '" /> - <input type="submit" name="ban" value="' . $lang['pBanIP'] . '" /> - <input type="submit" name="publish" value="' . $lang['pPublish'] . '" /> - <input type="submit" name="unpublish" value="' . $lang['pUnpublish'] . '" />';
 			}
-						
+			$urlActionPrefix = "";			
 			echo "<form action=\"" . $urlActionPrefix . "\" method=\"post\"><fieldset>
 			<table class=\"tablePosts\">
 				<tr class=\"topInfosActions\">
