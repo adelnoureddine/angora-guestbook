@@ -27,9 +27,15 @@ if (@$magic != "0xDEADBEEF")
 			foreach ($arrayValues as $id => $value) {
 				$optionsCheck['' .  $value . ''] = secureVar(trim($_POST['' .  $value . '']), 'html');
 				if ($checkVars) {
-					if (($optionsCheck['' .  $value . ''] == '') ||  empty($optionsCheck['' .  $value . '']))
-						if ($optionsCheck['' .  $value . ''] != 0)
-							$errorField .= $lang['' .  $value . ''] . ' ' . $lang['isEmpty'] . '<br />';
+					if ($value == "reCaptchapubk" || $value == "reCaptchaprvk") {
+					  if ($optionsCheck["reCaptcha"]) {
+						$errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? 
+						$lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+					  }
+					} else {
+					  $errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? 
+						$lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+					}
 				}
 				if ($errorField == '') {
 					$con->connect();
@@ -83,7 +89,7 @@ if (@$magic != "0xDEADBEEF")
 			default : ;
 		}
 		
-		if ($errorField != '') {
+		if (isset($errorField) && $errorField != '') {
 			echo "<div class=\"msgError\">$errorField</div>";
 		}
 	}
