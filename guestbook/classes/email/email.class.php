@@ -55,8 +55,8 @@ class Email {
 		$result = false;
 
 		if(preg_match('/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,6}|[0-9]{2,4})(\]?)$/',$this->email)) {
-			list($user_name, $mail_domain) = split("@", $this->email);
-			if (eregi('win', PHP_OS)) {
+			[$user_name, $mail_domain] = explode("@", $this->email);
+			if (preg_match('/win/i', PHP_OS)) {
 				$disabled_functions = explode(',', str_replace(' ', '', ini_get('disable_functions')));
 				if (!in_array('exec', $disabled_functions))
 					$result = $this->checkDNS("$mail_domain");
@@ -76,7 +76,7 @@ class Email {
 			$recType = "MX";
 			exec("nslookup -type=$recType " . escapeshellcmd($hostName), $result);
 			foreach ($result as $line) {
-				if(eregi("^$hostName",$line)) {
+				if(preg_match("/^$hostName/i", $line)) {
 					return true;
 				}
 			}
