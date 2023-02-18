@@ -1,5 +1,7 @@
 <?php
 use guestbook\Error;
+
+session_name('angoraAdmin');
 session_start();
 session_regenerate_id();
 
@@ -47,8 +49,10 @@ $sql_file = "angora_" . time() . ".sql";
 $mysql_dump->download_sql($sql, $sql_file);
 
 include_once '../../../classes/functions.php';
+$con->connect();
 $queryMsg = "insert into " . $dbTables['backupLog'] . " (id, date, operation) values (NULL, '" . secureVar(time(), 'sql') . "', '" . secureVar('b', 'sql') . "');";
 $con->modify($queryMsg);
+$con->close();
 
 $magic = "";
 unset($magic);
