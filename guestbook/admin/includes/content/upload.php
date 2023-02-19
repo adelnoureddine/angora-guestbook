@@ -22,7 +22,7 @@ if (@$magic != "0xDEADBEEF")
 	}
 
 	if ((! empty($submitId)) && isset($submitId)) {
-		$uploadCheck['uploadFile'] = @$HTTP_POST_FILES['uploadFile']['name'];
+		$uploadCheck['uploadFile'] = $_FILES['uploadFile']['name'];
 		$uploadCheck['uploadLocation'] = secureVar(trim($_POST['uploadLocation']), 'html');
 		$uploadCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
 		
@@ -71,7 +71,7 @@ if (@$magic != "0xDEADBEEF")
 			$auc->overwrite = true;
 			$auc->check_file_type = 'allowed';
 			$auc->allowed_mime_types = $allowed_mime_types;
-			$result = $auc->upload(uploadFile);
+			$result = $auc->upload('uploadFile');
 			if (is_array($result)) {
 				echo "<div class=\"msgError\">" . $lang['uploadError'] . "</div>";
 				echo '<pre>' . var_dump($result) . '</pre>';
