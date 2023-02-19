@@ -193,8 +193,8 @@ class auc {
  *
  */
 class TrigerErrorException extends Exception {
-	protected $file = "";
-	public function __construct($message, $file = "", $code = 0) {
+	protected string $file = "";
+	public function __construct(string $message,string  $file = "",int $code = 0) {
 		$this->file = $file;
    		parent::__construct($message, $code);
 	}
