@@ -118,7 +118,7 @@ if (@$magic != "0xDEADBEEF")
     	while (false !== ($file = readdir($handle))) {
 	        if ($file != "." && $file != "..") {
 	            echo '&nbsp;&nbsp;<a href="index.php?a=upload&file=' . base64_encode($file) . '&dir=smilies" onclick="if (! window.confirm(\'' . $lang['sure'] . '\')) return false;"><img src="../images/admin/delete.gif" alt="delete" /></a> 
-	            <a href="../images/custom/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
+	            <a href="../images/smilies/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
 	        }
     	}
     	closedir($handle);
