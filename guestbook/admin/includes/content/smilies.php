@@ -149,7 +149,7 @@ if (@$magic != "0xDEADBEEF")
     	while (false !== ($file = readdir($handle))) {
 	        if ($file != "." && $file != "..") {
 	            echo '&nbsp;&nbsp; 
-	            <a href="../images/custom/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
+	            <a href="../images/smilies/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
 	        }
     	}
     	closedir($handle);
