@@ -146,7 +146,7 @@ if (__FILE__ == \$_SERVER['SCRIPT_FILENAME'])
 	
 	if ((! empty($generatePaths)) && isset($generatePaths)) {
 		$chPaths['backupFolder'] = realpath("./backup");
-		$chPaths['smiliesFolder'] = realpath("../images/custom");
+		$chPaths['smiliesFolder'] = realpath("../images/smilies");
 		$chPaths['langFolder'] = realpath("../languages");
 		$chPaths['themesFolder'] = realpath("../themes");
 	}
