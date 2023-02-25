@@ -114,7 +114,7 @@ if ($installCheck['hidden'] == 'Lupa') {
 				
 				$savedEmail = base64_encode($installCheck['adminEmail']);
 				$chPaths['backupFolder'] = realpath("../admin/backup");
-				$chPaths['smiliesFolder'] = realpath("../images/custom");
+				$chPaths['smiliesFolder'] = realpath("../images/smilies");
 				$chPaths['langFolder'] = realpath("../languages");
 				$chPaths['themesFolder'] = realpath("../themes");
 				
