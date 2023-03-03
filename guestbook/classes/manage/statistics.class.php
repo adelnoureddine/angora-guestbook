@@ -35,16 +35,19 @@ class Statistics {
 		$os = 'unknown';
 		
 		// Browsers
-		$browser = (preg_match('/mozilla/i', $this->userAgent)) ? 'mozilla' : $browser;
+		$browser = (preg_match('/mozilla/i', $this->userAgent)) ? 'mozilla' : $browser;		
+		$browser = (preg_match('/safari/i', $this->userAgent)) ? 'safari' : $browser;
+		$browser = (preg_match('/chrome/i', $this->userAgent)) ? 'chrome' : $browser;
+		
 		$browser = (preg_match('/msie/i', $this->userAgent)) ? 'ie' : $browser;
 		$browser = (preg_match('/netscape/i', $this->userAgent)) ? 'netscape' : $browser;
-		$browser = (preg_match('/opera/i', $this->userAgent)) ? 'opera' : $browser;
+		$browser = (preg_match('/opera/i', $this->userAgent) || preg_match('/opr/i', $this->userAgent)) ? 'opera' : $browser;
+		$browser = (preg_match('/edge/i', $this->userAgent) || preg_match('/edg/i', $this->userAgent)) ? 'edge' : $browser;
 		$browser = (preg_match('/konqueror/i', $this->userAgent)) ? 'konqueror' : $browser;
 		$browser = (preg_match('/galeon/i', $this->userAgent)) ? 'galeon' : $browser;
 		$browser = (preg_match('/firefox/i', $this->userAgent)) ? 'firefox' : $browser;
 		$browser = (preg_match('/links/i', $this->userAgent)) ? 'links' : $browser;
-		$browser = (preg_match('/safari/i', $this->userAgent)) ? 'safari' : $browser;
-		$browser = (preg_match('/chrome/i', $this->userAgent)) ? 'chrome' : $browser;
+
 		
 		// Mobile Systems
 		$os = (preg_match('/webos/i', $this->userAgent)) ? 'palm_webos' : $os;
@@ -73,6 +76,10 @@ class Statistics {
 		$os = (preg_match('/nt 5.5/i', $this->userAgent)) ? 'win_new' : $os;
 		$os = (preg_match('/nt 6.0/i', $this->userAgent)) ? 'win_new' : $os;
 		$os = (preg_match('/nt 6.1/i', $this->userAgent)) ? 'win_new' : $os;
+		$os = (preg_match('/nt 6.2/i', $this->userAgent)) ? 'win_new' : $os;
+		$os = (preg_match('/nt 6.3/i', $this->userAgent)) ? 'win_new' : $os;
+		$os = (preg_match('/nt 10/i', $this->userAgent)) ? 'win_new' : $os;
+		
 
 		//Linux Systems
 		$os = (preg_match('/linux/i', $this->userAgent)) ? 'linux' : $os;
