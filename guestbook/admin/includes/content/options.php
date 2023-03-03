@@ -33,8 +33,9 @@ if (@$magic != "0xDEADBEEF")
 						$lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
 					  }
 					} else {
-					  $errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? 
-						$lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+						if($value != 'timezone'){
+							$errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? $lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+						}
 					}
 				}
 				if ($errorField == '') {
