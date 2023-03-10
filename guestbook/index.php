@@ -173,7 +173,9 @@ $global->assign("CONTENT_BOX", $boxContent);
 if (empty($pageName) || !file_exists("includes/content/" . $pageName . ".php")) {
 	if (
 	((! empty($postId)) && isset($postId) && is_numeric($postId))
-	|| ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2))
+	|| ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2)) 
+	|| ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) 
+	|| ((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)) 
 	|| ((!empty($searchId)) && isset($searchId) && ($searchId != "") && !(isset($lang['searchInput']) && $searchId == $lang['searchInput']))
 	|| ($config['pagesFormat'] == 'allinone')
 	) {} else {

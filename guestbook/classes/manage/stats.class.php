@@ -29,6 +29,7 @@ class Stats {
 	}
 
 	function calculateStats($userAgent) {
+		
 		// Browser Calculation
 		if (preg_match('/firefox/i', $userAgent)){
 			$this->tableBrowser["Firefox"]++;
