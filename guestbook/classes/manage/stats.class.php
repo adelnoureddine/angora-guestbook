@@ -63,7 +63,7 @@ class Stats {
 		if (preg_match('/webos/i', $userAgent)) {
 			$this->tableOS["Palm webOS"]++;
 		}
-		if (preg_match('/windows phone/i', $userAgent)) {
+		elseif (preg_match('/windows phone/i', $userAgent)) {
 			$this->tableOS["Palm webOS"]++;
 		}
 		elseif (preg_match('/blackberry/i', $userAgent)) {
