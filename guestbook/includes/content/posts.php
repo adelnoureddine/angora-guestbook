@@ -44,7 +44,7 @@ elseif ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) {
 	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date desc;";
 	$os = new Os();
 	$boxContent->assign("SEARCH_OS_ICON", "images/os/icon_" . $os->getOS($osId) . ".png");
-	$boxContent->assign("SEARCH_OS_NAME", $os->getOS($osId));
+	$boxContent->assign("SEARCH_OS_NAME", $os->getOSTitle($osId));
 	$boxContent->parse('posts.search_os');
 }
 
@@ -141,9 +141,15 @@ if ($con->getNumRows() > 0) {
 
 		if ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) {
 			$pageNum = 1;
-			if($userAgent->getOs() != $os->getOs($osId)){
-				$pub = false;
+			
+			if(!in_array($osId,$os->getOsStatsArray())){
+				if($userAgent->getOs() != $os->getOs($osId) ){
+					$pub = false;
+				}
+			}else{
+				$pub = $os->Statsfilter($osId,$res['useragent']);
 			}
+			
 		}elseif((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)){
 			$pageNum = 1;
 			if($userAgent->getBrowser() != $browser->getBrowser($browserId)){
