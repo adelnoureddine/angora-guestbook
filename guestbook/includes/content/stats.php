@@ -48,8 +48,7 @@ if ($totalFlags > 0) {
 		if ($num > 0) {
 			$percentage = number_format((($num * 100) / $totalNumber), 2);
 			
-			$realosname = $os->transformStatName($tabos);
-			$boxContent->assign("URL_OS", "index.php?os=" . $os->getOsCode($realosname));
+			$boxContent->assign("URL_OS", "index.php?os=" . $os->getOsCode($tabos));
 			$boxContent->assign('OS_NAME', $tabos);
 			$boxContent->assign('NUM_OS', $num);
 			$boxContent->assign('PER_OS', $percentage);
