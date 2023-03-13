@@ -47,17 +47,6 @@ class Statistics {
 		$browser = (preg_match('/galeon/i', $this->userAgent)) ? 'galeon' : $browser;
 		$browser = (preg_match('/firefox/i', $this->userAgent)) ? 'firefox' : $browser;
 		$browser = (preg_match('/links/i', $this->userAgent)) ? 'links' : $browser;
-
-		
-		// Mobile Systems
-		$os = (preg_match('/webos/i', $this->userAgent)) ? 'palm_webos' : $os;
-		$os = (preg_match('/iphone/i', $this->userAgent)) ? 'ios' : $os;
-		$os = (preg_match('/ipod/i', $this->userAgent)) ? 'ios' : $os;
-		$os = (preg_match('/ipad/i', $this->userAgent)) ? 'ios' : $os;
-		$os = (preg_match('/blackberry/i', $this->userAgent)) ? 'blackberry' : $os;
-		$os = (preg_match('/android/i', $this->userAgent)) ? 'android' : $os;
-		$os = (preg_match('/windows phone/i', $this->userAgent)) ? 'windows_phone' : $os;
-		$os = (preg_match('/symbian/i', $this->userAgent)) ? 'symbian' : $os;
 		
 		//Old Windows Systems
 		$os = (preg_match('/windows/i', $this->userAgent)) ? 'win_old' : $os;
@@ -67,6 +56,16 @@ class Statistics {
 		$os = (preg_match('/nt 4/i', $this->userAgent)) ? 'win_old' : $os;
 		$os = (preg_match('/nt 5.0/i', $this->userAgent)) ? 'win_old' : $os;
 		$os = (preg_match('/win3/i', $this->userAgent)) ? 'win_old' : $os;
+
+		// Mobile Systems
+		$os = (preg_match('/webos/i', $this->userAgent)) ? 'palm_webos' : $os;
+		$os = (preg_match('/iphone/i', $this->userAgent)) ? 'ios' : $os;
+		$os = (preg_match('/ipod/i', $this->userAgent)) ? 'ios' : $os;
+		$os = (preg_match('/ipad/i', $this->userAgent)) ? 'ios' : $os;
+		$os = (preg_match('/blackberry/i', $this->userAgent)) ? 'blackberry' : $os;
+		$os = (preg_match('/android/i', $this->userAgent)) ? 'android' : $os;
+		$os = (preg_match('/windows phone/i', $this->userAgent)) ? 'windows_phone' : $os;
+		$os = (preg_match('/symbian/i', $this->userAgent)) ? 'symbian' : $os;
 		
 		//New Windows Systems
 		$os = (preg_match('/nt 5.1/i', $this->userAgent)) ? 'win_new' : $os;
