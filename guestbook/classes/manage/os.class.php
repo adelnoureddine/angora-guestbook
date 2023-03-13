@@ -1,70 +1,106 @@
 <?php
 
-/**
- ****************************************************
- * countries.class.php                              *
- ****************************************************
- * Angora Guestbook                                 *
- ****************************************************
- * Software author :            Adel Noureddine     *
- * Copyright 2005 - 2009 by :   Adel Noureddine     *
- ****************************************************
- * The countries class file                         *
- ****************************************************
- * */
-
 class Os {
 	
-	private $osArray = array(
+	private $osArray = array( //array [0] : icon     array [1] : title
 		"000" => "Unknown",
         "and" => "Android",
         "bla" => "Blackberry",
         "fre" => "Freebsd",
-        "ios" => "IoS",
+        "ios" => "iOS",
         "lin" => "Linux",
-        "deb" => "Linux_Debian",
-        "red" => "Linux_Redhat",
-        "sus" => "Linux_Suse",
-        "mac" => "Macos",
-        "pal" => "Palm_Webos",
+        "deb" => array("Linux_Debian","Debian"),
+        "red" => array("Linux_Redhat","Redhat"),
+        "sus" => array("Linux_Suse","Suse"),
+        "mac" => array("Macos","Mac OS"),
+        "pal" => array("Palm_Webos","Palm WebOS"),
         "sol" => "Solaris",
         "sym" => "Symbian",
         "ubu" => "Ubuntu",
         "uni" => "Unix",
-        "wne" => "win_new",
-        "wol" => "win_old",
-        "wph" => "Windows_Phone"
+        "wne" => array("win_new","New Windows"),
+        "wol" => array("win_old","Old Windows"),
+        "wph" => array("Windows_Phone","Windows Phone"),
+        "wi9" => array("win_old","Windows 9.x"),
+        "wix" => array("win_new","Windows XP"),
+        "wiv" => array("win_new","Windows Vista"),
+        "wi7" =>  array("win_new","Windows 7"),
+        "wi8" =>  array("win_new","Windows 8"),
+        "wi1" =>  array("win_new","Windows 10/11"), 
 	);
-	
+
+    private $osStatsArray = array("wi9","wix","wiv","wi7","wi8","wi1","pal","lin");
+
 	function __construct() {
 	}
-	
+    
 	function __destruct() {
 		unset($this->osArray);
+        unset($this->osStatsArray);
 	}
 	
 	function getOs($osCode) {
-		return strtolower($this->osArray[$osCode]);
+		return is_array($this->osArray[$osCode]) ? strtolower($this->osArray[$osCode][0]) : strtolower($this->osArray[$osCode]);
 	}
+
+    function getOsTitle($osCode){
+        return is_array($this->osArray[$osCode]) ? $this->osArray[$osCode][1] : $this->osArray[$osCode];
+    }
     
     function getOsCode($osName) {
+        if($osName == "Palm webOS") return "pal";
+        if($osName == "Palm webOS") return "pal";
+        if($osName == "Mac OS") return "mac";
         foreach ($this->osArray as $code => $os) {
-            if (strtolower($osName) === strtolower($os)) {
+           
+            $osValue = is_array($os) ? $os[0] : $os;
+            if (in_array($code, ['wi9', 'wix', 'wiv', 'wi7', 'wi8', 'wi1'])) {
+                $osValue = $os[1];
+            }
+            
+            if (strtolower($osName) === strtolower($osValue)) {
                 return $code;
             }
         }
         return "000";
     }
 
-    function transformStatName($osName) {
-        $transfo = $osName;
-        if ($osName == "Windows 10/11"){
-           $transfo = "win_new";
-        }elseif (preg_match('/Windows 8/i',$osName) || preg_match('/Windows 7/i',$osName) || preg_match('/vista/i',$osName) || preg_match('/windows xp/i',$osName) || preg_match('/9.x/i',$osName)){
-            $transfo = "win_old";
+    function Statsfilter($osCode, $userAgent){
+        switch ($osCode) {
+            case 'wi9':
+                $patterns = array('/win9/i', '/win32/i', '/windows 9/i', '/nt 4/i', '/nt 5.0/i', '/win3/i');
+                break;
+            case 'wix':
+                $patterns = array('/nt 5.1/i', '/nt 5.2/i', '/nt 5.3/i', '/nt 5.4/i', '/nt 5.5/i');
+                break;
+            case 'pal':
+                $patterns = array('/windows phone/i', '/webos/i');
+                break;
+            case 'wiv':
+                $patterns = array('/nt 6.0/i');
+                break;
+            case 'wi7':
+                $patterns = array('/nt 6.1/i');
+                break;
+            case 'wi8':
+                $patterns = array('/nt 6.2/i', '/nt 6.3/i');
+                break;
+            case 'wi1':
+                $patterns = array('/nt 10/i');
+                break;
+            case 'lin':
+                $patterns = array('/linux/i', '/suse/i', '/ubuntu/i', '/redhat/i', '/debian/i', '/gentoo/i');
+                break;
+            default:
+                return false;
         }
-
-        return $transfo;
+        
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $userAgent)) {
+                return true;
+            }
+        }
+        return false;
     }
 	
 	function getOsArray() {
@@ -72,7 +108,12 @@ class Os {
 		asort($arrayReturn);
 		return $arrayReturn;
 	}
-	
+
+    function getOsStatsArray(){
+        $arrayReturn = array_unique($this->osStatsArray);
+		asort($arrayReturn);
+		return $arrayReturn;
+    }
 }
 
 ?>
