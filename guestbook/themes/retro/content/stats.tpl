@@ -12,7 +12,7 @@
 				</tr>
 			<!-- BEGIN: statOS -->
 				<tr>
-					<td>{OS_NAME}</td>
+					<td><a href="{URL_OS}">{OS_NAME}</a></td>
 					<td>{NUM_OS}</td>
 					<td><img src="images/stats/bar.gif" alt="{PER_OS}" width="{PER_OS}" height="12" /> {PER_OS}%</td>
 				</tr>
@@ -29,7 +29,7 @@
 		
 			<!-- BEGIN: statBrowser -->
 				<tr>
-					<td>{BROWSER_NAME}</td>
+					<td><a href="{URL_BROWSER}">{BROWSER_NAME}</a></td>
 					<td>{NUM_BROWSER}</td>
 					<td><img src="images/stats/bar.gif" alt="{PER_BROWSER}" width="{PER_BROWSER}" height="12" /> {PER_BROWSER}%</td>
 				</tr>

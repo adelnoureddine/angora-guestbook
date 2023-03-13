@@ -50,7 +50,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 		 * @param String: $dbpwd
 		 * @return MYSQL_DUMP
 		 */
-		function MYSQL_DUMP($host="",$user="",$dbpwd="")
+		function __construct($host="",$user="",$dbpwd="")
 		{
 			$this->setDBHost($host,$user,$dbpwd);
 
@@ -116,14 +116,14 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 			if($database == HAR_ALL_DB)
 			{
 				$sql = "SHOW DATABASES";
-				$this->result = @mysql_query($sql);
-				if(mysql_error()!=="")
+				$this->result = @mysqli_query($this->conn, $sql);
+				if(mysqli_error($this->conn)!=="")
 				{
-					$this->error="Error : ".mysql_error();
+					$this->error="Error : ".mysqli_error($this->conn);
 					return false;
 				}
 				
-				while($row = mysql_fetch_array($this->result,MYSQL_NUM))
+				while($row = mysqli_fetch_array($this->result,MYSQLI_NUM))
 				{
 					$this->database[]=$row[0];
 				}
@@ -139,21 +139,21 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 			$returnSql .= "# -------------------------------------------------".$lineEnd;
 
 			$sql = "SELECT VERSION()";
-			$this->result = mysql_query($sql);
-			$row = mysql_fetch_array($this->result,MYSQL_NUM);
+			$this->result = mysqli_query($this->conn, $sql);
+			$row = mysqli_fetch_array($this->result,MYSQLI_NUM);
 			$returnSql .= "# Server version ".$row[0].$lineEnd.$lineEnd;
 			
 			
 			
 			for($i=0; $i < count($this->database) ; $i++)
 			{
-				if(count($this->database)>1)
+				if(count($this->database)>=1)
 					$returnSql.= "USE ".$this->database[$i].";".$lineEnd.$lineEnd;
-				
-				$this->result = @mysql_query("USE ".$this->database[$i]);
-				if(mysql_error()!=="")
+
+				$this->result = @mysqli_query($this->conn, "USE ".$this->database[$i]);
+				if(mysqli_error($this->conn)!=="")
 				{
-					$this->error="Error : ".mysql_error();
+					$this->error="Error : ".mysqli_error($this->conn);
 					return false;
 				}
 				
@@ -161,14 +161,14 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 				if($tables == HAR_ALL_TABLES)
 				{
 					$sql = "SHOW Tables";
-					$this->result = @mysql_query($sql);
-					if(mysql_error()!=="")
+					$this->result = @mysqli_query($this->conn, $sql);
+					if(mysqli_error($this->conn)!=="")
 					{
-						$this->error="Error : ".mysql_error();
+						$this->error="Error : ".mysqli_error($this->conn);
 						return false;
 					}
 
-					while($row = mysql_fetch_array($this->result,MYSQL_NUM))
+					while($row = mysqli_fetch_array($this->result,MYSQLI_NUM))
 					{
 						$this->tables[]=$row[0];
 					}
@@ -182,13 +182,13 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 					if(($options & HAR_NO_STRUCT ) != HAR_NO_STRUCT)
 					{
 						$sql = "SHOW CREATE TABLE ".$this->tables[$j];
-						$this->result = @mysql_query($sql);
-						if(mysql_error()!=="")
+						$this->result = @mysqli_query($this->conn, $sql);
+						if(mysqli_error($this->conn)!=="")
 						{
-							$this->error="Error : ".mysql_error();
+							$this->error="Error : ".mysqli_error($this->conn);
 							return false;
 						}
-						$row = mysql_fetch_array($this->result,MYSQL_NUM);
+						$row = mysqli_fetch_array($this->result,MYSQLI_NUM);
 						
 						
 						$returnSql .= " #".$lineEnd;
@@ -213,14 +213,14 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 						if(($options & HAR_FULL_SYNTAX == HAR_FULL_SYNTAX))
 						{
 							$sql="SHOW COLUMNS FROM ".$this->tables[$j];
-							$this->result = @mysql_query($sql);
-							if(mysql_error()!=="")
+							$this->result = @mysqli_query($this->conn, $sql);
+							if(mysqli_error($this->conn)!=="")
 							{
-								$this->error="Error : ".mysql_error();
+								$this->error="Error : ".mysqli_error($this->conn);
 								return false;
 							}
 							$fields = array();
-							while($row = mysql_fetch_array($this->result,MYSQL_NUM))
+							while($row = mysqli_fetch_array($this->result,MYSQLI_NUM))
 							{
 								$fields[]=$row[0];
 							}
@@ -228,16 +228,16 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 						}
 
 						$sql="SELECT * FROM ".$this->tables[$j];
-						$this->result = @mysql_query($sql);
-						if(mysql_error()!=="")
+						$this->result = @mysqli_query($this->conn, $sql);
+						if(mysqli_error($this->conn)!=="")
 						{
-							$this->error="Error : ".mysql_error();
+							$this->error="Error : ".mysqli_error($this->conn);
 							return false;
 						}
-						while($row = mysql_fetch_array($this->result,MYSQL_NUM))
+						while($row = mysqli_fetch_array($this->result,MYSQLI_NUM))
 						{
 							foreach($row as $key => $value)
-								$row[$key] = mysql_escape_string($value);
+								$row[$key] = mysqli_escape_string($this->conn, $value);
 								
 							$returnSql .=$temp_sql.' VALUES ("'.@implode('","',$row).'");'.$lineEnd;
 						}
@@ -318,6 +318,7 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 				$uploadMsg= "Sql File is empty.";
 			else
 			{
+                $sql = "";
 				foreach($lines as $line)
 				{
 					$sql.=trim($line);
@@ -333,12 +334,17 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 					}
 					elseif(!preg_match("/;[\r\n]+/",$line))
 						continue;
-					
-					@mysql_query($sql);
-					if(mysql_error()!="")
-					{
-						$this->error.="<br>".mysql_error();
-					}
+
+                    try{
+                        @mysqli_query($this->conn, $sql);
+                        if(mysqli_error($this->conn)!="")
+                        {
+                            $this->error.="<br>".mysqli_error($this->conn);
+                        }
+                    }
+                    catch(Exception $e){
+                        $this->error.="<br>".$e->getMessage();
+                    }
 			
 					$sql="";
 				}
@@ -351,10 +357,10 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME'])
 		function _connect()
 		{
 			if(!is_resource($this->conn))
-				$this->conn = @mysql_connect($this->dbhost,$this->dbuser,$this->dbpwd);
+				$this->conn = @mysqli_connect($this->dbhost,$this->dbuser,$this->dbpwd);
 			if(!is_resource($this->conn))
 			{
-				$this->error = mysql_error();
+				$this->error = mysqli_error($this->conn);
 				return false;
 			}
 			return $this->conn;

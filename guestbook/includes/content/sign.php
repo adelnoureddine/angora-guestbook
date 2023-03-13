@@ -103,8 +103,8 @@ if ((! empty($submitId)) && isset($submitId)) {
 	if ($config['reCaptcha']) {
 		$resp = recaptcha_check_answer ($config['reCaptchaprvk'],
 								$_SERVER["REMOTE_ADDR"],
-								$_POST["recaptcha_challenge_field"],
-								$_POST["recaptcha_response_field"]);
+								isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '',
+								isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '');
 		if (!$resp->is_valid)
 			$errorField .= $lang['captchaError'] . '<br />';
 	}

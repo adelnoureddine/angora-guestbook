@@ -31,13 +31,13 @@ if (@$magic != "0xDEADBEEF")
 		if ($backupType['backupType'] == 'restore') {
 			if (base64_decode($_SESSION['privilege']) == 1) {
 				$errorField = '';
-				$uploadedFilePost = @$HTTP_POST_FILES['uploadField']['name'];
+				$uploadedFilePost = @$_FILES['uploadField']['name'];
 				if (isset($uploadedFilePost) && !empty($uploadedFilePost)) {
 					$uploadedFile = $config['backupFolder'] . '/' . basename($_FILES['uploadField']['name']);
 					
 					if (@move_uploaded_file($_FILES['uploadField']['tmp_name'], $uploadedFile)) {
 						include_once '../classes/database/mysql_dump.inc.php';
-						$mysql_dump = new MYSQL_DUMP($data['dbHost'], $data['dbUsername'], $data['dbPassword']);
+						$mysql_dump = new MYSQL_DUMP(base64_decode($data['dbHost']), base64_decode($data['dbUsername']), base64_decode($data['dbPassword']));
 						$con->connect();
 						if ($mysql_dump->restoreDB($uploadedFile)) {
 							@unlink($uploadedFile);

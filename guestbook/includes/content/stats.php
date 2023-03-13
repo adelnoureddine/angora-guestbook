@@ -28,6 +28,13 @@ $totalNumber = 0;
 $totalFlags = $con->getNumRows();
 
 if ($totalFlags > 0) {
+	include_once 'classes/manage/browsers.class.php';
+	include_once 'classes/manage/os.class.php';
+	include_once 'classes/manage/statistics.class.php';
+	
+	$browser = new Browsers();
+	$os = new Os();
+	
 
 	if ($con->getNumRows() > 0) {
 		foreach ($con->queryResult as $res) {
@@ -41,6 +48,7 @@ if ($totalFlags > 0) {
 		if ($num > 0) {
 			$percentage = number_format((($num * 100) / $totalNumber), 2);
 			
+			$boxContent->assign("URL_OS", "index.php?os=" . $os->getOsCode($tabos));
 			$boxContent->assign('OS_NAME', $tabos);
 			$boxContent->assign('NUM_OS', $num);
 			$boxContent->assign('PER_OS', $percentage);
@@ -52,6 +60,7 @@ if ($totalFlags > 0) {
 		if ($num > 0) {
 			$percentage = number_format((($num * 100) / $totalNumber), 2);
 			
+			$boxContent->assign("URL_BROWSER", "index.php?br=" . $browser->getBrowserCode($tabos));
 			$boxContent->assign('BROWSER_NAME', $tabos);
 			$boxContent->assign('NUM_BROWSER', $num);
 			$boxContent->assign('PER_BROWSER', $percentage);
