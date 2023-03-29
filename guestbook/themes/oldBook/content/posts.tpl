@@ -12,6 +12,10 @@
 		<div class="countriesTitle"><img src="{SEARCH_BROWSER_ICON}" alt="{SEARCH_BROWSER_NAME}" /> {SEARCH_BROWSER_NAME}</div>
 	<!-- END: search_browsers -->
 	
+	<!-- BEGIN: search_rates -->
+		<div class="countriesTitle"><img src="{SEARCH_RATE_ICON}" alt="{SEARCH_RATE_NAME}" /></div>
+	<!-- END: search_rates -->
+
 	<!-- BEGIN: num_posts -->
 		<div class="countriesTitle">{MESSAGES_LANG} {NUM_MESSAGES}</div>
 	<!-- END: num_posts -->
@@ -24,7 +28,7 @@
 						<a href="{PAGE_ADDR}">{NAME}</a>, <span class="small">{DATE}, {LOCATION}</span>
 					</td>
 					<td align="right" width="16%">
-						<img src="{RATING_ICON}" alt="{RATING}" />
+						<a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" /></a>
 						<a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" width="18px" height="12px" /></a>
 					</td>
 				</tr>
