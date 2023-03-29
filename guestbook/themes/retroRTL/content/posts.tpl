@@ -26,6 +26,10 @@
 	<!-- BEGIN: search_browsers -->
 		<div class="countriesTitle"><img src="{SEARCH_BROWSER_ICON}" alt="{SEARCH_BROWSER_NAME}" /> {SEARCH_BROWSER_NAME}</div>
 	<!-- END: search_browsers -->
+ 
+	<!-- BEGIN: search_rates -->
+		<div class="countriesTitle"><img src="{SEARCH_RATE_ICON}" alt="{SEARCH_RATE_NAME}" /></div>
+	<!-- END: search_rates -->
 	
 	<!-- BEGIN: num_posts -->
 		<div class="countriesTitle">{MESSAGES_LANG} {NUM_MESSAGES}</div>
@@ -48,7 +52,7 @@
 					<td colspan="5" class="message" id='i{POST_ID}'>{MESSAGE}</td>
 				</tr>
 				<tr class="topInfos">
-					<td align="right"><img src="{RATING_ICON}" alt="{RATING}" /></td>
+					<td align="right"><a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" /></a></td>
 					<td colspan="3"></td>
 					<td align="left"><a href="{OS_ADDR}"><img src="{OS_ICON}" alt="OS" /></a> <a href="{BROWSER_ADDR}"><img src="{BROWSER_ICON}" alt="Browser" /></a></td>
 				</tr>
