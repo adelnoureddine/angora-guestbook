@@ -15,6 +15,9 @@ $osId = isset($_GET['os']) ? secureVar($_GET['os'], 'html') : "";
 // Get Browser
 $browserId = isset($_GET['br']) ? secureVar($_GET['br'], 'html') : "";
 
+// Get Rate
+$rateId = isset($_GET['ra']) ? secureVar($_GET['ra'], 'html') : "";
+
 // Get search query
 $searchId = isset($_POST['s']) ? secureVar($_POST['s'], 'html') : "";
 
@@ -55,6 +58,14 @@ elseif ((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)) 
 	$boxContent->assign("SEARCH_BROWSER_ICON", "images/browsers/icon_" . $browser->getBrowser($browserId) . ".png");
 	$boxContent->assign("SEARCH_BROWSER_NAME", $browser->getBrowser($browserId));
 	$boxContent->parse('posts.search_browsers');
+}
+
+elseif (isset($rateId) && $rateId >= -1 && $rateId <= 5) {
+	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true and posts.rating=\"" . secureVar($rateId, 'sql')  . "\" group by posts.date desc;";
+	
+	$boxContent->assign("SEARCH_RATE_ICON", "images/stars/" . $rateId . ".gif");
+	$boxContent->assign("SEARCH_RATE_NAME", $rateId);
+	$boxContent->parse('posts.search_rates');
 }
 
 // Get search
@@ -172,6 +183,7 @@ if ($con->getNumRows() > 0) {
 			$boxContent->assign("USER_AGENT", secureVar($res['useragent'], 'html'));
 			$boxContent->assign("RATING", secureVar($res['rating'], 'html'));
 			$boxContent->assign("RATING_ICON", "images/stars/" . secureVar($res['rating'], 'html') . ".gif");
+			$boxContent->assign("RATING_ADDR", "index.php?ra=" . secureVar($res['rating'], 'html'));
 			$boxContent->assign("PAGE_ADDR", "index.php?id=" . secureVar($res['id'], 'html'));
 			$boxContent->assign("COUNTRY_ADDR", "index.php?cc=" . secureVar($res['country'], 'html'));
 			$boxContent->assign("BROWSER_ICON", "images/browsers/icon_" . $userAgent->getBrowser() . ".png");
