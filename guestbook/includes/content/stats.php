@@ -97,8 +97,32 @@ if ($totalFlags > 0) {
 			}
 		}
 	}
+ 
+	if($durationId == 'lastmonth')
+		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' and date>=" . $lastMonthSeconds . " group by rating order by nb_rating desc, rating asc;";
+	else
+		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' group by rating order by nb_rating desc, rating asc;";
+	$con->connect();
+	$con->getRows($queryMsg);
+	if ($con->getNumRows() > 0) {
+		
+		foreach ($con->queryResult as $res) {
+			if ($res['rating'] != '') {
+				$percentage = number_format((($res['nb_rating'] * 100) / $totalFlags), 2);
+				
+				$boxContent->assign("RATE_ICON", "images/stars/" . $res['rating'] . ".gif");
+				$boxContent->assign("RATE_ID", $res['rating']);
+				$boxContent->assign("URL_RATE", "index.php?ra=" . $res['rating']);
+				$boxContent->assign("NUM_RATE", $res['nb_rating']);
+				//$boxContent->assign("NAME_RATE",$res['rating']);
+				$boxContent->assign('PER_RATE', $percentage);
+				$boxContent->parse('stats.stats_posts.rateStats');
+			}
+		}
+	}
 	
 	$boxContent->assign('TOTAL_FLAGS', $totalFlags);
+	$boxContent->assign('LANG_RATE', $lang['rating']);
 	$boxContent->assign('LANG_COUNTRY', $lang['country']);
 	$boxContent->assign('LANG_NB_POSTS', $lang['nbPosts']);
 	$boxContent->assign('LANG_TOTAL', $lang['total']);
