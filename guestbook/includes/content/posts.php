@@ -33,7 +33,7 @@ if ((! empty($postId)) && isset($postId) && is_numeric($postId))
 
 // Get single country posts
 elseif ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2)) {
-	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true and posts.country=\"" . secureVar($countryId, 'sql')  . "\" group by posts.date desc;";
+	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true and posts.country=\"" . secureVar($countryId, 'sql')  . "\" group by posts.date " . $config['dateSort'] . ";";
 
 	include_once 'classes/manage/countries.class.php';
 	$countryName = new Countries();
@@ -44,7 +44,7 @@ elseif ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2)) 
 
 elseif ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) {
 	include_once 'classes/manage/os.class.php';
-	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date desc;";
+	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date " . $config['dateSort'] . ";";
 	$os = new Os();
 	$boxContent->assign("SEARCH_OS_ICON", "images/os/icon_" . $os->getOS($osId) . ".png");
 	$boxContent->assign("SEARCH_OS_NAME", $os->getOSTitle($osId));
@@ -53,7 +53,7 @@ elseif ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) {
 
 elseif ((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)) {
 	include_once 'classes/manage/browsers.class.php';
-	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date desc;";
+	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date " . $config['dateSort'] . ";";
 	$browser = new Browsers();
 	$boxContent->assign("SEARCH_BROWSER_ICON", "images/browsers/icon_" . $browser->getBrowser($browserId) . ".png");
 	$boxContent->assign("SEARCH_BROWSER_NAME", $browser->getBrowser($browserId));
@@ -61,7 +61,7 @@ elseif ((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)) 
 }
 
 elseif (isset($rateId) && $rateId >= -1 && $rateId <= 5) {
-	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true and posts.rating=\"" . secureVar($rateId, 'sql')  . "\" group by posts.date desc;";
+	$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true and posts.rating=\"" . secureVar($rateId, 'sql')  . "\" group by posts.date " . $config['dateSort'] . ";";
 	
 	$boxContent->assign("SEARCH_RATE_ICON", "images/stars/" . $rateId . ".gif");
 	$boxContent->assign("SEARCH_RATE_NAME", $rateId);
@@ -88,14 +88,14 @@ elseif ((!empty($searchId)) && isset($searchId) && ($searchId != "") && !(isset(
 	
 	// Remove additional ||
 	$queryMsg = substr($queryMsg,0,(strLen($queryMsg)-3));
-	$queryMsg .= " group by posts.date desc;";
+	$queryMsg .= " group by posts.date " . $config['dateSort'] . ";";
 }
 
 // Get the posts
 else {
 	// Get all posts
 	if ($config['pagesFormat'] == 'allinone')
-		$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date desc;";
+		$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date " . $config['dateSort'] . ";";
 	
 	// Get posts for the selected page
 	elseif ($config['pagesFormat'] == 'several') {
@@ -107,7 +107,7 @@ else {
 
 		$startingPostNum = ($pageNum - 1) * $config['numPostsPerPage'];
 		
-		$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date desc limit " . secureVar($startingPostNum, 'sql') . " , " . secureVar($config['numPostsPerPage'], 'sql') . ";";
+		$queryMsg = "select posts.*, reply.id as rid, reply.post_id as post_id, reply.date as rdate, reply.message as rmessage, reply.name as rname from " . $dbTables['posts'] . " posts LEFT JOIN " . $dbTables['reply'] . " reply ON (posts.id = reply.post_id) where posts.publish=true group by posts.date " . $config['dateSort'] . " limit " . secureVar($startingPostNum, 'sql') . " , " . secureVar($config['numPostsPerPage'], 'sql') . ";";
 	}
 	else {
 		$error = new Error("The Cat doesn't know how to display the posts !");
