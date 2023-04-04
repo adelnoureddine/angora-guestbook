@@ -86,6 +86,7 @@ foreach ($con->queryResult as $res) {
 	$config['smiliesFolder'] = $res['smiliesFolder'];
 	$config['langFolder'] = $res['langFolder'];
 	$config['themesFolder'] = $res['themesFolder'];
+	$config['dateSort'] = $res['dateSort'];
 
 	$config['receiveEmailNotification'] = $res['receiveEmailNotification'];
 	$config['autoCensor'] = $res['autoCensor'];
