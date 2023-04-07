@@ -101,7 +101,7 @@ if ($totalFlags > 0) {
 	if($durationId == 'lastmonth')
 		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' and date>=" . $lastMonthSeconds . " group by rating order by nb_rating desc, rating asc;";
 	else
-		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' group by rating order by nb_rating desc, rating asc;";
+		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' group by rating order by rating desc;";
 	$con->connect();
 	$con->getRows($queryMsg);
 	if ($con->getNumRows() > 0) {
