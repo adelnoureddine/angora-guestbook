@@ -21,7 +21,10 @@ $queryMsgAlter3 = "ALTER TABLE " . $dbTables['config'] . "
 $queryMsgAlter4 = "ALTER TABLE " . $dbTables['config'] . "
  ADD `reCaptchaprvk` varchar(255) NOT NULL;";
 
-if ($con->modify($queryMsgAlter1) && $con->modify($queryMsgAlter2) && $con->modify($queryMsgAlter3) && $con->modify($queryMsgAlter4)) {
+$queryMsgAlter5 = "ALTER TABLE " . $dbTables['config'] . "
+ ADD `dateSort` varchar(4) NOT NULL DEFAULT `desc`;";
+
+if ($con->modify($queryMsgAlter1) && $con->modify($queryMsgAlter2) && $con->modify($queryMsgAlter3) && $con->modify($queryMsgAlter4) && $con->modify($queryMsgAlter5)) {
 	$queryMsg = "UPDATE " . $dbTables['config'] . " SET reCaptcha=0";
 
 	if ($con->modify($queryMsg)) {
