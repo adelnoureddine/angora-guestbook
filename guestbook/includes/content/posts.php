@@ -182,6 +182,7 @@ if ($con->getNumRows() > 0) {
 			$boxContent->assign("MESSAGE", $messageValue);
 			$boxContent->assign("USER_AGENT", secureVar($res['useragent'], 'html'));
 			$boxContent->assign("RATING", secureVar($res['rating'], 'html'));
+			$boxContent->assign("RATED", secureVar($res['rating'], 'html')>=0 ? "rated" : "not_rated");
 			$boxContent->assign("RATING_ICON", "images/stars/" . secureVar($res['rating'], 'html') . ".gif");
 			$boxContent->assign("RATING_ADDR", "index.php?ra=" . secureVar($res['rating'], 'html'));
 			$boxContent->assign("PAGE_ADDR", "index.php?id=" . secureVar($res['id'], 'html'));
