@@ -40,7 +40,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="left" colspan="2">
-						<a href="{PAGE_ADDR}" style="font-size: 20px; font-weight: bold">{NAME}</a> <a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" class="{RATED}" /></a>
+						👤<a href="{PAGE_ADDR}" style="font-size: 20px; font-weight: bold">{NAME}</a> <a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" class="{RATED}" /></a>
 					</td>
 					<td align="right">
 						{DATE}
@@ -49,14 +49,15 @@
 				<tr>
 					<td colspan="3" class="message" id='i{POST_ID}'>{MESSAGE}</td>
 				</tr>
+				
 				<tr class="topInfos">
-				<td align="left" style="width: 33.33%;">
+				<td align="center" style="width: 33.33%;">
 					<a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" /></a>
 				</td>
 				<td style="text-align: center;">
 					{LOCATION}
 				</td>
-				<td align="right" style="width: 33.33%;"><a href="{OS_ADDR}"><img src="{OS_ICON}" alt="OS" /></a> <a href="{BROWSER_ADDR}"><img src="{BROWSER_ICON}" alt="Browser" /></a></td>
+				<td align="center" style="width: 33.33%;"><a href="{OS_ADDR}"><img src="{OS_ICON}" alt="OS" /></a> <a href="{BROWSER_ADDR}"><img src="{BROWSER_ICON}" alt="Browser" /></a></td>
 				</tr>
 			</table>
 			<!-- BEGIN: fetch_adminReply -->
