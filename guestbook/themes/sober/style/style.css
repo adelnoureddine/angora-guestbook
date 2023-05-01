@@ -3,11 +3,12 @@
 	vertical-align : middle;
 	margin : 5px auto;
 	width : 500px;
+
 }
 
 .title
 {
-	background-color : #4A7DAC;
+	background-color : #343a40;
 	color : #F9F8F7;
 	font-size : 20px;
 	text-align : center;
@@ -23,7 +24,7 @@
 
 .footNotes
 {
-	background-color : #4A7DAC;
+	background-color : #343a40;
 	color : #F9F8F7;
 	font-size : 14px;
 	text-align : center;
@@ -45,7 +46,7 @@
 
 .pageLinks
 {
-	background-color : #4A7DAC;
+	background-color : #343a40;
 	color : #F9F8F7;
 	font-size : 14px;
 	text-align : center;
@@ -62,27 +63,38 @@
 .posts
 {
 	margin : 10px auto;
-	border : 2px solid black;
-	border-radius: 12px;
-	padding: 10px;
-	background-color: white;
+	border-radius: 8px;
+	padding: 2px;
+	background-color: #343a40;
+	
+	transition: all .5s ease;
+	
+}
+
+.posts:hover{
+	margin: 15px auto;
+	transform: scale(1.05);
+	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.4);
 }
 
 .message
 {
-	color : black;
-	background-color : white;
+	color : #F9F8F7;
+	background-color : #2f353a;
+	border: 2px solid black;
+	border-radius: 4px;
+	padding-left: 15px;
 }
 
 .topInfos
 {
-	color: black;
-	/*background-color: #ecdfdf;*/
+	color: rgb(200, 200, 200);
+	background-color: #434b53; /*#373e44*/
 }
 
 .topInfos a, a.href
 {
-	color: black;
+	color: white;
 	background-color: transparent;
 }
 
@@ -90,7 +102,7 @@
 {
 	margin : 0px auto;
 	width : 100%;
-	border : 0px solid black;
+	border : 0px solid white;
 }
 
 .tableReply
@@ -117,12 +129,13 @@
 .stats
 {
 	border : 1px solid black;
+	box-shadow: 0px 1px 20px #343a40;
 }
 
 .topStats
 {
 	color : #F9F8F7;
-	background-color : #4A7DAC;
+	background-color : #343a40;
 }
 
 .signError
@@ -148,9 +161,9 @@
 {
 	text-align : center;
 	color : white;
-	background-color : #4A7DAC;
+	background-color : #343a40;
 }
 
 img.rated{
-	height:15px;
+	height:11px;
 }
