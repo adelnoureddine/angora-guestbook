@@ -12,6 +12,7 @@ body
 fieldset
 {
 	border : 0px;
+	background-color: #434b53;
 }
 
 img
@@ -45,13 +46,13 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus
 {
     color : #000;
     background-color : #fff;
-    border : 2px solid #3465a4;
+    border : 2px solid #343a40;
 }
 
 input[type="submit"], input[type="button"]
 {
-	color : #F9F8F7;
-	background-color : #4A7DAC;
+	color : black;
+	background-color : #ffffff;
 	border-top-style : none;
 	border-right-style : none;
 	border-left-style : none;
