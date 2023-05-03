@@ -59,7 +59,7 @@ if ($installCheck['hidden'] == 'Lupa') {
 		$con->connect();
 		
 		$instDone = true;
-		$sqlfile = "sql/angora_1_5_installation.sql";
+		$sqlfile = "sql/angora_2_0_installation.sql";
 
 		$sql = '';
 		if (is_file($sqlfile)) {
