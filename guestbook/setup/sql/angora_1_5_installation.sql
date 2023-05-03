@@ -44,7 +44,6 @@ CREATE TABLE `#__config` (
   `reCaptcha` tinyint(1) NOT NULL,
   `reCaptchapubk` varchar(255) NOT NULL,
   `reCaptchaprvk` varchar(255) NOT NULL,
-  `dateSort` varchar(4) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
