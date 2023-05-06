@@ -25,7 +25,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="left" width="84%">
-						<a href="{PAGE_ADDR}">{NAME}</a>, <span class="small">{DATE}, {LOCATION}</span>
+						<a href="{PAGE_ADDR}">{NAME}</a>, <span class="small">{DATE}, <a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a></span>
 					</td>
 					<td align="right" width="16%">
 						<a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" /></a>
