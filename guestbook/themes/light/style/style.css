@@ -1,0 +1,176 @@
+.content
+{
+	vertical-align : middle;
+	margin : 5px auto;
+	width : 500px;
+	background-color: #F9F9F9;
+
+}
+
+.title
+{
+	background-color: rgb(241, 225, 195);
+	color: #343a40;
+	font-size : 20px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.menu
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+    color: #343a40;
+}
+
+.footNotes
+{
+	background-color: rgb(241, 225, 195);
+    color: #343a40;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.footNotes a, a.link
+{
+	color: #343a40;
+	background-color : transparent;
+}
+
+.searchBox
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+	background-color: rgb(241, 225, 195);
+    color: #343a40;
+}
+
+.pageLinks
+{
+	background-color: rgb(241, 225, 195);
+    color: #343a40;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+	width : 500px;
+}
+
+.pageLinks a, a.link
+{
+	color: #343a40;
+	background-color : transparent;
+}
+
+.posts
+{
+	margin : 10px auto;
+	border-radius: 8px;
+	padding: 2px;
+	background-color: rgb(241, 225, 195);
+	
+	/*transition: all .5s ease;*/
+	
+}
+
+/*.posts:hover{
+	margin: 15px auto;
+	transform: scale(1.05);
+	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.4);
+}*/
+
+.message
+{
+	color: #343a40;
+    background-color: white;
+	border: 2px solid grey;
+	border-radius: 4px;
+	padding-left: 15px;
+}
+
+.topInfos
+{
+	color: #343a40;
+    background-color: #F9F9F9;
+}
+
+.topInfos a, a.href
+{
+	color: #343a40;
+	background-color: transparent;
+}
+
+.tablePosts
+{
+	margin : 0px auto;
+	width : 100%;
+	
+}
+
+.tableReply
+{
+	margin : 0px auto;
+	width : 80%;
+	border: 2px solid #343a40;
+	border-radius: 12px;
+	padding: 10px;
+}
+
+.statistics
+{
+	width : 100%;
+	margin : 5px auto;
+	background-color: #F1F1F1;
+}
+
+.statistics a, a.href
+{
+	color: #343a40;
+	background-color : transparent;
+}
+
+.stats
+{
+	border: 1px solid #343a40;
+    
+	box-shadow: 0px 1px 20px #343a40;
+	padding: 2px;
+}
+
+.topStats
+{
+	color: black;
+    background-color: rgb(241, 225, 195);
+}
+
+.signError
+{
+	color : white;
+	background-color : #8b0000;
+	text-align : center;
+}
+
+.signOK
+{
+	color : black;
+	background-color : transparent;
+	text-align : center;
+}
+
+.signOK a, a.href
+{
+	font-size : 12px;
+}
+
+.countriesTitle
+{
+	text-align : center;
+    color: #F9F9F9;
+    background-color: #343a40;
+}
+
+img.rated{
+	height:11px;
+}
