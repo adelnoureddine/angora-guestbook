@@ -32,7 +32,7 @@ $lang['angLicence'] = "Angora Gästebuch-Lizenz";
 // includes/content/method.php
 $lang['instMethod'] = "Installationsmethode";
 $lang['updateFrom'] = "Update von ANG Version 0.7.x";
-$lang['updateFrom2'] = "Update der Versionen 1.x";
+$lang['updateFrom2'] = "Update der Versionen 1.6.1";
 $lang['newInstallation'] = "Neue Installation";
 
 //includes/content/update.php
