@@ -27,7 +27,7 @@
 					<td align="left" valign="top">
 						<a href="{PAGE_ADDR}">{NAME}</a>
 						<br />
-						{DATE}, {LOCATION}
+						{DATE}, <a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a>
 						<br />
 						<a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" /></a>
 						<a href="{OS_ADDR}"><img src="{OS_ICON}" alt="OS" /></a> <a href="{BROWSER_ADDR}"><img src="{BROWSER_ICON}" alt="Browser" /></a>
