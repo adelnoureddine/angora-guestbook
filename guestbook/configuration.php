@@ -97,7 +97,7 @@ foreach ($con->queryResult as $res) {
 }
 
 $config['angName'] = 'Angora';
-$config['angVersion'] = '1.6.1';
+$config['angVersion'] = '2.0';
 $config['angUrl'] = 'http://aguestbook.sourceforge.net';
 
 $con->close();
