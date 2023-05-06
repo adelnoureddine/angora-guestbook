@@ -25,7 +25,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="left">
-						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, {LOCATION}, {COUNTRY}
+						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, <a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a>, {COUNTRY}
 					</td>
 				</tr>
 				<tr>
