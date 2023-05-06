@@ -1,0 +1,172 @@
+.content
+{
+	vertical-align : middle;
+	margin : 5px auto;
+	width : 500px;
+
+}
+
+.title
+{
+	background-color : #343a40;
+	color : #F9F8F7;
+	font-size : 20px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.menu
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.footNotes
+{
+	background-color : #343a40;
+	color : #F9F8F7;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+}
+
+.footNotes a, a.link
+{
+	color : #F9F8F7;
+	background-color : transparent;
+}
+
+.searchBox
+{
+	font-size : 16px;
+	text-align : center;
+	margin : 5px auto;
+	background-color : #343a40;
+}
+
+.pageLinks
+{
+	background-color : #343a40;
+	color : #F9F8F7;
+	font-size : 14px;
+	text-align : center;
+	margin : 5px auto;
+	width : 500px;
+}
+
+.pageLinks a, a.link
+{
+	color : #F9F8F7;
+	background-color : transparent;
+}
+
+.posts
+{
+	margin : 10px auto;
+	border-radius: 8px;
+	padding: 2px;
+	background-color: #343a40;
+	
+	/*transition: all .5s ease;*/
+	
+}
+
+/*.posts:hover{
+	margin: 15px auto;
+	transform: scale(1.05);
+	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.4);
+}*/
+
+.message
+{
+	color : #F9F8F7;
+	background-color : #2f353a;
+	border: 2px solid black;
+	border-radius: 4px;
+	padding-left: 15px;
+}
+
+.topInfos
+{
+	color: rgb(200, 200, 200);
+	background-color: #434b53; /*#373e44*/
+}
+
+.topInfos a, a.href
+{
+	color: white;
+	background-color: transparent;
+}
+
+.tablePosts
+{
+	margin : 0px auto;
+	width : 100%;
+	border : 0px solid white;
+}
+
+.tableReply
+{
+	margin : 0px auto;
+	width : 80%;
+	border: 2px solid black;
+	border-radius: 12px;
+	padding: 10px;
+}
+
+.statistics
+{
+	width : 100%;
+	margin : 5px auto;
+}
+
+.statistics a, a.href
+{
+	color : black;
+	background-color : transparent;
+}
+
+.stats
+{
+	border : 1px solid black;
+	box-shadow: 0px 1px 20px #343a40;
+	padding: 2px;
+	background-color: #616c78;
+}
+
+.topStats
+{
+	color : #F9F8F7;
+	background-color : #343a40;
+}
+
+.signError
+{
+	color : white;
+	background-color : #8b0000;
+	text-align : center;
+}
+
+.signOK
+{
+	color : black;
+	background-color : transparent;
+	text-align : center;
+}
+
+.signOK a, a.href
+{
+	font-size : 12px;
+}
+
+.countriesTitle
+{
+	text-align : center;
+	color : white;
+	background-color : #343a40;
+}
+
+img.rated{
+	height:11px;
+}
