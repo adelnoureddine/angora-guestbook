@@ -167,8 +167,8 @@
 .countriesTitle
 {
 	text-align : center;
-    color: #F9F9F9;
-    background-color: #343a40;
+    color: black;
+    background-color: rgb(241, 225, 195);
 }
 
 img.rated{
