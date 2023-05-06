@@ -40,7 +40,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="right" width="30%"><a href="{PAGE_ADDR}">{NAME}</a></td>
-					<td align="right" width="20%">{LOCATION}</td>
+					<td align="right" width="20%"><a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a></td>
 					<td align="right" width="35%">{DATE}</td>
 					<td align="right" width="5%"><a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" /></a></td>
 					
