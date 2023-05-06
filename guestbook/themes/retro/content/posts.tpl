@@ -40,7 +40,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="left">
-						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, {LOCATION} <a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" /></a> 
+						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, <a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a> <a href="{COUNTRY_ADDR}"><img src="{COUNTRY_ICON}" alt="{COUNTRY}" /></a> 
 					</td>
 					<td align="right">
 						<a href="javascript:toggle({POST_ID})"><img src="images/posts/toggle1.gif" id="m{POST_ID}" alt="toggle" /></a>
