@@ -32,7 +32,7 @@ $lang['angLicence'] = "Angora إتفاقية إستخدام دفتر الزوا�
 // includes/content/method.php
 $lang['instMethod'] = "طريقة التنصيب";
 $lang['updateFrom'] = "تحديث من AN Guestbook 0.7.x";
-$lang['updateFrom2'] = "تحديث من إصدارات 1.x";
+$lang['updateFrom2'] = "محدث من الإصدار 1.6.1";
 $lang['newInstallation'] = "نسخة جديدة";
 
 //includes/content/update.php
