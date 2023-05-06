@@ -10,22 +10,10 @@ require_once '../configuration.php';
 $con->connect();
 
 $queryMsgAlter1 = "ALTER TABLE " . $dbTables['config'] . "
- ADD `timezone` varchar(255) NOT NULL;";
+ ADD `dateSort` varchar(4) NOT NULL;";
 
-$queryMsgAlter2 = "ALTER TABLE " . $dbTables['config'] . "
- ADD `reCaptcha` tinyint(1) NOT NULL;";
-
-$queryMsgAlter3 = "ALTER TABLE " . $dbTables['config'] . "
- ADD `reCaptchapubk` varchar(255) NOT NULL;";
-
-$queryMsgAlter4 = "ALTER TABLE " . $dbTables['config'] . "
- ADD `reCaptchaprvk` varchar(255) NOT NULL;";
-
-$queryMsgAlter5 = "ALTER TABLE " . $dbTables['config'] . "
- ADD `dateSort` varchar(4) NOT NULL DEFAULT `desc`;";
-
-if ($con->modify($queryMsgAlter1) && $con->modify($queryMsgAlter2) && $con->modify($queryMsgAlter3) && $con->modify($queryMsgAlter4) && $con->modify($queryMsgAlter5)) {
-	$queryMsg = "UPDATE " . $dbTables['config'] . " SET reCaptcha=0";
+if ($con->modify($queryMsgAlter1)) {
+	$queryMsg = "UPDATE " . $dbTables['config'] . " SET dateSort='desc'";
 
 	if ($con->modify($queryMsg)) {
 		echo "<div class=\"msgSuccess\">" . $lang['installationDone'] . "</div>";
@@ -44,6 +32,7 @@ if ($con->modify($queryMsgAlter1) && $con->modify($queryMsgAlter2) && $con->modi
 		$con->printError();
 		echo '<div id="previous"><a href="index.php?a=install&lang=' . $instLang . '">' . $lang['previous'] . '</a></div>';
 	}
+	
 }
 else {
 	echo "<div class=\"msgError\">" . $lang['dataError'] . "</div>";
