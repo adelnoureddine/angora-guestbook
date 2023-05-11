@@ -79,7 +79,7 @@ if (@$magic != "0xDEADBEEF")
 				doUpdate(array("0" => "guestbookLang", "1" => "adminLang"), 1);
 				break;
 			case 'visualeffects' :
-				doUpdate(array("0" => "guestbookTheme", "1" => "mobileTheme", "2" => "pagesFormat", "3" => "numPostsPerPage", "4" => "dateFormat", "5" => "timezone"), 1);
+				doUpdate(array("0" => "guestbookTheme", "1" => "mobileTheme", "2" => "pagesFormat", "3" => "dateSort", "4" => "numPostsPerPage", "5" => "dateFormat", "6" => "timezone"), 1);
 				break;
 			case 'gboffline' :
 				doUpdate(array("0" => "offline", "1" => "offlineMessage"), 1);
@@ -382,7 +382,21 @@ if (@$magic != "0xDEADBEEF")
 						echo '<option value="several">' . $lang['several'] . '</option>';
 					}
 					echo '</select></td>
+				</tr>
+				<tr>
+					<td>' . $lang['dateSort'] . '</td>
+					<td><select name="dateSort">';
+					if ($config['dateSort'] == 'asc') {
+						echo '<option value="asc">' . $lang['ascending'] . '</option>';
+						echo '<option value="desc">' . $lang['descending'] . '</option>';
+					}
+					elseif ($config['dateSort'] == 'desc') {
+						echo '<option value="desc">' . $lang['descending'] . '</option>';
+						echo '<option value="asc">' . $lang['ascending'] . '</option>';
+					}
+					echo '</select></td>
 				</tr>';
+				
                 showTableRow('numPostsPerPage', 'input', 5);
                 showTableRow('dateFormat', 'input', 10);
                 showTableRow('timezone', 'input', 10);

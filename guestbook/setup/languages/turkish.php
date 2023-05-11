@@ -32,7 +32,7 @@ $lang['angLicence'] = "Angora Ziyaretçi Defteri Lisansý";
 // includes/content/method.php
 $lang['instMethod'] = "Kurulum Þekli";
 $lang['updateFrom'] = "ANG 0.7.x Versiyondan Güncelleme";
-$lang['updateFrom2'] = "1.x Versiyonlardan Yükseltme Yap";
+$lang['updateFrom2'] = "1.6.1 Versiyonlardan Yükseltme Yap";
 $lang['newInstallation'] = "Yeni Kurulum";
 
 //includes/content/update.php

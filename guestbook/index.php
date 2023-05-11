@@ -176,6 +176,7 @@ if (empty($pageName) || !file_exists("includes/content/" . $pageName . ".php")) 
 	|| ((!empty($countryId)) && isset($countryId) && (strlen($countryId) == 2)) 
 	|| ((!empty($osId)) && isset($osId) && (strlen($osId) == 3)) 
 	|| ((!empty($browserId)) && isset($browserId) && (strlen($browserId) == 3)) 
+	|| (isset($rateId) && $rateId >= -1 && $rateId <= 5) 
 	|| ((!empty($searchId)) && isset($searchId) && ($searchId != "") && !(isset($lang['searchInput']) && $searchId == $lang['searchInput']))
 	|| ($config['pagesFormat'] == 'allinone')
 	) {} else {

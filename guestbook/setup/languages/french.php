@@ -32,7 +32,7 @@ $lang['angLicence'] = "Licence d'utilisation du livre d'or Angora";
 // includes/content/method.php
 $lang['instMethod'] = "Méthode d'installation";
 $lang['updateFrom'] = "Mise à jour depuis ANG versions 0.7.x";
-$lang['updateFrom2'] = "Mise à jour depuis les versions 1.x";
+$lang['updateFrom2'] = "Mise à jour depuis la version 1.6.1";
 $lang['newInstallation'] = "Nouvelle installation";
 
 //includes/content/update.php

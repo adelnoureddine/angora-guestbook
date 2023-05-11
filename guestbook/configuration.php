@@ -86,6 +86,7 @@ foreach ($con->queryResult as $res) {
 	$config['smiliesFolder'] = $res['smiliesFolder'];
 	$config['langFolder'] = $res['langFolder'];
 	$config['themesFolder'] = $res['themesFolder'];
+	$config['dateSort'] = $res['dateSort'];
 
 	$config['receiveEmailNotification'] = $res['receiveEmailNotification'];
 	$config['autoCensor'] = $res['autoCensor'];
@@ -96,7 +97,7 @@ foreach ($con->queryResult as $res) {
 }
 
 $config['angName'] = 'Angora';
-$config['angVersion'] = '1.6.1';
+$config['angVersion'] = '2.0';
 $config['angUrl'] = 'http://aguestbook.sourceforge.net';
 
 $con->close();

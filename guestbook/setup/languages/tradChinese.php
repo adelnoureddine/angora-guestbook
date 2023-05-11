@@ -32,7 +32,7 @@ $lang['angLicence'] = "Angora 留言板授權";
 // includes/content/method.php
 $lang['instMethod'] = "安裝方式";
 $lang['updateFrom'] = "從 ANG 0.7.x 更新";
-$lang['updateFrom2'] = "從 1.x 版更新";
+$lang['updateFrom2'] = "從 1.6.1 版更新";
 $lang['newInstallation'] = "全新安裝";
 
 //includes/content/update.php

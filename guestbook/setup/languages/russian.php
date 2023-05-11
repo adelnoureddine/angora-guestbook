@@ -32,7 +32,7 @@ $lang['angLicence'] = "Лицензия Гостевой книги Angora";
 // includes/content/method.php
 $lang['instMethod'] = "Метод установки";
 $lang['updateFrom'] = "Обновить ANG с версии 0.7.x";
-$lang['updateFrom2'] = "Обновить с версии 1.x";
+$lang['updateFrom2'] = "Обновить с версии 1.6.1";
 $lang['newInstallation'] = "Новай установка";
 
 //includes/content/update.php

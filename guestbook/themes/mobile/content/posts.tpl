@@ -12,6 +12,10 @@
 		<div class="countriesTitle"><img src="{SEARCH_BROWSER_ICON}" alt="{SEARCH_BROWSER_NAME}" /> {SEARCH_BROWSER_NAME}</div>
 	<!-- END: search_browsers -->
 	
+	<!-- BEGIN: search_rates -->
+		<div class="countriesTitle"><img src="{SEARCH_RATE_ICON}" alt="{SEARCH_RATE_NAME}" /></div>
+	<!-- END: search_rates -->
+	
 	<!-- BEGIN: num_posts -->
 		<div class="countriesTitle">{MESSAGES_LANG} {NUM_MESSAGES}</div>
 	<!-- END: num_posts -->
@@ -21,7 +25,7 @@
 			<table class="tablePosts">
 				<tr class="topInfos">
 					<td align="left">
-						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, {LOCATION}, {COUNTRY}
+						<a href="{PAGE_ADDR}">{NAME}</a>, {DATE}, <a href="https://www.openstreetmap.org/search?query={LOCATION}" target="_blank">{LOCATION}</a>, {COUNTRY}
 					</td>
 				</tr>
 				<tr>
@@ -29,7 +33,7 @@
 				</tr>
 				<tr class="topInfos">
 				<td align="left">
-					<img src="{RATING_ICON}" alt="{RATING}" /> 
+					<a href="{RATING_ADDR}"><img src="{RATING_ICON}" alt="{RATING}" /></a>
 					<a href="{OS_ADDR}"><img src="{OS_ICON}" alt="OS" /></a>
 					<a href="{BROWSER_ADDR}"><img src="{BROWSER_ICON}" alt="Browser" /></a>
 				</td>
