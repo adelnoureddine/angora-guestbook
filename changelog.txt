@@ -20,7 +20,3 @@ CHANGES
 - Update ReCaptcha to support version 2
 - Update TinyMCE to version 3.5.12
 - Replace dUnzip2 with ZipArchive
-
-
-MODIFIES, ADDED OR REMOVED FILES
---------------------------------
