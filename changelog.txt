@@ -3,31 +3,24 @@
 ===============
 
 Angora Guestbook
-Version 1.6 -> 1.6.1
+Version 1.6.1 -> 2.0
 
 
 CHANGES
 --------
 
-Fix file disclosure on backup directory
-Fix mobile statistics
-Add Windows Phone and Symbian to statistics
-Fix local file inclusion in index.php
+- Big modernization the codebase to work with PHP 8 and MySQL 8 / MariaDB 10
+- Add 2 new modern themes: light and dark
+- Add feature to display posts by their operating systems or browser
+- Add option to sort posts by date, ascending or descending
+- Add statistics for ratings
+- Add link to openstreetmap for posts' location
+- Fix many small papercuts (timezone, phpinfo, style, etc.)
+- Update statistics with modern browsers and operating systems
+- Update ReCaptcha to support version 2
+- Update TinyMCE to version 3.5.12
+- Replace dUnzip2 with ZipArchive
 
 
-MODIFIES FILES
----------------
-
-index.php
-configuration.php
-
-classes/manage/stats.class.php
-classes/manage/statistics.class.php
-
-
-ADDED FILES
-------------
-
-admin/backup/index.html
-images/os/icon_windows_phone.png
-images/os/icon_symbian.png
+MODIFIES, ADDED OR REMOVED FILES
+--------------------------------

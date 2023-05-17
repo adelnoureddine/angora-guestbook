@@ -5,17 +5,17 @@
 
 Angora Guestbook
 Author : Adel Noureddine
-Website : http://aguestbook.sourceforge.net
-Version : 1.6.1
-Copyright (c) Adel Noureddine 2005 - 2011
-The Angora Guestbook logo is copyrighted to Adel Noureddine, 2009 - 2011
+Website : http://aguestbook.sourceforge.net and https://github.com/adelnoureddine/angora-guestbook
+Version : 2.0
+Copyright (c) Adel Noureddine 2005 - 2023
+The Angora Guestbook logo is copyrighted to Adel Noureddine, 2009 - 2023
 
 
 
 INSTALLATION REQUIREMENTS
 --------------------------
--> PHP version >= 5.2.0
--> MySQL version >= 4.1.0
+-> PHP version >= 8.0
+-> MySQL version >= 8.0 or MariaDB version >= 10.0
 
 
 NEW INSTALLATION
@@ -26,63 +26,39 @@ NEW INSTALLATION
 3. Run the setup installer at /setup/
 4. Follow the instructions on the screen and choose "New installation" when asked
 
-UPDATE FROM ANGORA GUESTBOOK VERSION 1.6
+UPDATE FROM ANGORA GUESTBOOK VERSION 1.6.1
 -----------------------------------------
 
-NOTE: Use the 1.6 to 1.6.1 update patch, not the full 1.6.1 package.
+NOTE: Use the 1.6.1 to 2.0 update patch, not the full 2.0 package.
 
 1. Backup your files and database
 2. Upload all files from the angora/ folder to your server and replace the old ones
-3. You're done!
-
-
-UPDATE FROM ANGORA GUESTBOOK VERSION 1.5
------------------------------------------
-
-NOTE: Use the 1.5 to 1.6.1 update patch, not the full 1.6.1 package.
-
-1. Backup your files and database
-2. Upload all files from the angora/ folder to your server and replace the old ones
-3. You're done!
-
-
-UPDATE FROM ANGORA GUESTBOOK VERSIONS 1.0, 1.1, 1.2 AND 1.2.1
--------------------------------------------------------------
-
-NOTE: Use the 1.x to 1.6.1 update patch, not the full 1.6.1 package.
-
-1. Backup your files and database
-1. Upload all files from the guest/ folder to your server and replace the old ones
 3. Run the setup installer at /setup/
-4. Follow the instructions on the screen and choose "Update from versions 1.x" when asked
+4. Follow the instructions on the screen and choose "Update from version 1.6.1" when asked
 
 
-UPDATE FROM AN GUESTBOOK VERSION 0.7.x
----------------------------------------
+UPDATE FROM ANGORA GUESTBOOK VERSION 1.6 OR OLDER
+--------------------------------------------------
 
-1. Backup your files and database
-2. Remove ALL your AN Guestbook files EXCEPT data.php (DO NOT DELETE THAT FILE)
-3. Upload all files from the angora/ folder to your server
-4. Run the setup installer at /setup/
-5. Follow the instructions on the screen and choose "Update from ANG versions 0.7.x" when asked
-
+Update from older version is not supported directly.
+Update first to version 1.6.1 then use the update patch 1.6.1 to 2.0.
 
 NOTE
 -----
-
-The update works only for AN Guestbook versions 0.7.x (0.7, 0.7.1, 0.7.5, 0.7.6, 0.7.7).
-If you are using an older version, please first update to any of the 0.7.x versions, before updating to Angora Guestbook.
-There is no direct update for previous versions.
 
 For TinyMCE :
 tiny_mce/plugins/emotions/editor_plugin.js, editor_plugin_src.js and /js/emotions.js, are modified versions of the original files.
 Modification for editor_plugin_src.js is line 14, where emotions.htm is replaced with emotions.php
 emotions.php is a new file, in replacement of emotions.htm
-Version used : 3.4.2
+Version used : 3.5.12
 
 
 CREDITS
 -------
+
+== Version 2.0 ==
+Version 2.0 wouldn't be possible without the work of Benjamin Fontaine and Barbara Jimenez.
+They modernized Angora Guestbook to work with PHP 8 and added many new features, as part of their master's student project.
 
 == Classes ==
 Angora uses several classes based on the work of others.
