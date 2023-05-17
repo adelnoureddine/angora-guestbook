@@ -37,7 +37,7 @@ echo "<!DOCTYPE html
 <meta http-equiv=\"Content-Type\" lang=\"" . $lang['lang'] . "\" content=\"text/html; charset=" . $lang['charset'] . "\" />
 <title>" . $config['headTitle'] . "</title>";
 
-$pageName = secureVar($_GET['a'], 'html');
+$pageName = isset($_GET['a']) ? secureVar($_GET['a'], 'html') : '';
 
 if ((empty($pageName)) || ($pageName == '') || ($pageName == 'login')) {
 	echo "<script type=\"text/javascript\" src=\"../javascript/webtoolkit.sha256.js\"></script>

@@ -15,17 +15,10 @@
 
 class Tinymce {
 
-	function isCompatible($userAgent) {
+	static function isCompatible($userAgent) {
 		$compatible = false;
 		
-		if (((eregi('firefox', $userAgent)) ||
-			(eregi('opera', $userAgent)) ||
-			(eregi('chrome', $userAgent)) ||
-			(eregi('safari', $userAgent)) ||
-			(eregi('msie', $userAgent)) ||
-			(eregi('mozilla', $userAgent))) &&
-				(! eregi('konqueror', $userAgent))
-			) {
+		if (preg_match('/firefox|opera|chrome|safari|msie|mozilla/i', $userAgent) && !preg_match('/konqueror/i', $userAgent)) {
 			$compatible = true;
 		}
 		

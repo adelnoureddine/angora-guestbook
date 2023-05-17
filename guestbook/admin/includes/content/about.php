@@ -12,7 +12,7 @@ if (@$magic != "0xDEADBEEF")
 	echo $lang['author'] . ' : Adel Noureddine<br />';
 	echo $lang['website'] . ' : <a href="http://aguestbook.sourceforge.net" target="_blank">http://aguestbook.sourceforge.net</a><br />';
 	echo $lang['licence'] . ' : The Angora License (Version 1.1)';
-	echo "<p>copyright &copy; 2005 - 2009 - Adel NOUREDDINE</p>
+	echo "<p>copyright &copy; 2005 - 2023 - Adel NOUREDDINE</p>
 	<p><strong><u>Definitions :</u></strong><br />
 	The <i>\"Author\"</i> refers to Adel NOUREDDINE.
 	</p>

@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
@@ -38,7 +38,7 @@ echo "
 	<div class=\"forgotPass\"><a href=\"index.php?a=forgotPass\">" . $lang['forgotPass'] . "</a></div>";
 }
 
-$loginCheck['step'] = secureVar(trim($_POST['step']), 'html');
+$loginCheck['step'] = isset($_POST['step']) ? secureVar(trim($_POST['step']), 'html') : '';
 
 switch ($loginCheck['step']) {
 	case 'user' :

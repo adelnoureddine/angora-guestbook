@@ -1,14 +1,14 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
 	echo '<div class="mainTitle">' . $lang['uploadCenter'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'upload\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
-	$deleteFile = secureVar($_GET['file'], 'html');
+	$deleteFile = isset($_GET['file']) ? secureVar($_GET['file'], 'html') : '';
 		
 	if ((! empty($deleteFile)) && isset($deleteFile)) {
 		$deleteFileFolder = secureVar($_GET['dir'], 'html');
@@ -22,7 +22,7 @@ if (@$magic != "0xDEADBEEF")
 	}
 
 	if ((! empty($submitId)) && isset($submitId)) {
-		$uploadCheck['uploadFile'] = @$HTTP_POST_FILES['uploadFile']['name'];
+		$uploadCheck['uploadFile'] = $_FILES['uploadFile']['name'];
 		$uploadCheck['uploadLocation'] = secureVar(trim($_POST['uploadLocation']), 'html');
 		$uploadCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
 		
@@ -71,7 +71,7 @@ if (@$magic != "0xDEADBEEF")
 			$auc->overwrite = true;
 			$auc->check_file_type = 'allowed';
 			$auc->allowed_mime_types = $allowed_mime_types;
-			$result = $auc->upload(uploadFile);
+			$result = $auc->upload('uploadFile');
 			if (is_array($result)) {
 				echo "<div class=\"msgError\">" . $lang['uploadError'] . "</div>";
 				echo '<pre>' . var_dump($result) . '</pre>';
@@ -118,7 +118,7 @@ if (@$magic != "0xDEADBEEF")
     	while (false !== ($file = readdir($handle))) {
 	        if ($file != "." && $file != "..") {
 	            echo '&nbsp;&nbsp;<a href="index.php?a=upload&file=' . base64_encode($file) . '&dir=smilies" onclick="if (! window.confirm(\'' . $lang['sure'] . '\')) return false;"><img src="../images/admin/delete.gif" alt="delete" /></a> 
-	            <a href="../images/custom/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
+	            <a href="../images/smilies/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
 	        }
     	}
     	closedir($handle);

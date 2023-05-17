@@ -1,5 +1,7 @@
 <?php
 
+use guestbook\Error;
+
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 

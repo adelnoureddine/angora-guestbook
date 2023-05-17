@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
@@ -11,7 +11,7 @@ if (@$magic != "0xDEADBEEF")
 	echo '<div class="mainTitle">' . $lang['smilies'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'smilies\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	if ((! empty($submitId)) && isset($submitId)) {		
 		$smiliesCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
@@ -149,7 +149,7 @@ if (@$magic != "0xDEADBEEF")
     	while (false !== ($file = readdir($handle))) {
 	        if ($file != "." && $file != "..") {
 	            echo '&nbsp;&nbsp; 
-	            <a href="../images/custom/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
+	            <a href="../images/smilies/' . secureVar($file, 'html') . '" onclick="window.open(this.href);return false;">' . secureVar($file, 'html') . '</a><br />';
 	        }
     	}
     	closedir($handle);

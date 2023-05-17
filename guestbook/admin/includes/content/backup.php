@@ -1,12 +1,12 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
 	echo '<div class="mainTitle">' . $lang['backupRestore'] . ' ' . $lang['database'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'backup\');">' . $lang['help'] . '</a></div>';
 	
-	$actionId = secureVar($_GET['action'], 'html');
+	$actionId = isset($_GET['action']) ? secureVar($_GET['action'], 'html') : '';
 	
 	if ((! empty($actionId)) && isset($actionId)) {
 		if ($actionId == "clear") {
@@ -17,7 +17,7 @@ if (@$magic != "0xDEADBEEF")
 		}
 	}
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	if ((! empty($submitId)) && isset($submitId)) {
 		$backupType['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
@@ -31,13 +31,13 @@ if (@$magic != "0xDEADBEEF")
 		if ($backupType['backupType'] == 'restore') {
 			if (base64_decode($_SESSION['privilege']) == 1) {
 				$errorField = '';
-				$uploadedFilePost = @$HTTP_POST_FILES['uploadField']['name'];
+				$uploadedFilePost = @$_FILES['uploadField']['name'];
 				if (isset($uploadedFilePost) && !empty($uploadedFilePost)) {
 					$uploadedFile = $config['backupFolder'] . '/' . basename($_FILES['uploadField']['name']);
 					
 					if (@move_uploaded_file($_FILES['uploadField']['tmp_name'], $uploadedFile)) {
 						include_once '../classes/database/mysql_dump.inc.php';
-						$mysql_dump = new MYSQL_DUMP($data['dbHost'], $data['dbUsername'], $data['dbPassword']);
+						$mysql_dump = new MYSQL_DUMP(base64_decode($data['dbHost']), base64_decode($data['dbUsername']), base64_decode($data['dbPassword']));
 						$con->connect();
 						if ($mysql_dump->restoreDB($uploadedFile)) {
 							@unlink($uploadedFile);

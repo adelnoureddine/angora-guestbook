@@ -32,7 +32,7 @@ $lang['angLicence'] = "Angora guestbook lisenssi";
 // includes/content/method.php
 $lang['instMethod'] = "Asennus tapa";
 $lang['updateFrom'] = "Päivitys ANG versioista 0.7.x";
-$lang['updateFrom2'] = "Päivitys versiosta 1.x";
+$lang['updateFrom2'] = "Päivitys versiosta 1.6.1";
 $lang['newInstallation'] = "Uusi asennus";
 
 //includes/content/update.php

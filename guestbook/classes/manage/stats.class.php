@@ -19,8 +19,8 @@ class Stats {
 	private $tableBrowser;
 
 	function __construct() {
-		$this->tableOS = array("Windows 9.x"=>"0", "Windows 7"=>"0", "Windows Vista"=>"0", "Windows XP"=>"0", "Linux"=>"0", "Mac OS"=>"0", "Unix"=>"0", "Solaris"=>"0", "Palm webOS"=>"0", "iOS"=>"0", "Blackberry"=>"0", "Android"=>"0", "Windows Phone"=>"0", "Symbian"=>"0", "Others"=>"0");
-		$this->tableBrowser = array("Internet Explorer"=>"0", "Firefox"=>"0", "Opera"=>"0", "Safari"=>"0", "Google Chrome"=>"0", "Mozilla/Netscape"=>"0", "Konqueror"=>"0", "Others"=>"0");
+		$this->tableOS = array("Windows 10/11"=>"0","Windows 9.x"=>"0", "Windows 7"=>"0", "Windows Vista"=>"0", "Windows XP"=>"0", "Linux"=>"0", "Mac OS"=>"0", "Unix"=>"0", "Solaris"=>"0", "Palm webOS"=>"0", "iOS"=>"0", "Blackberry"=>"0", "Android"=>"0", "Windows Phone"=>"0", "Symbian"=>"0", "Others"=>"0");
+		$this->tableBrowser = array("Microsoft Edge"=>"0","Internet Explorer"=>"0", "Firefox"=>"0", "Opera"=>"0", "Safari"=>"0", "Google Chrome"=>"0", "Mozilla/Netscape"=>"0", "Konqueror"=>"0", "Others"=>"0");
 	}
 	
 	function __destruct() {
@@ -29,26 +29,30 @@ class Stats {
 	}
 
 	function calculateStats($userAgent) {
+		
 		// Browser Calculation
-		if (eregi('firefox', $userAgent)) {
+		if (preg_match('/firefox/i', $userAgent)){
 			$this->tableBrowser["Firefox"]++;
 		}
-		elseif (eregi('opera', $userAgent)) {
+		elseif (preg_match('/opera/i', $userAgent) || preg_match('/opr/i', $userAgent)) {
 			$this->tableBrowser["Opera"]++;
 		}
-		elseif (eregi('chrome', $userAgent)) {
+		elseif (preg_match('/edge/i', $userAgent) || preg_match('/edg/i', $userAgent)) {
+			$this->tableBrowser["Microsoft Edge"]++;
+		}
+		elseif (preg_match('/chrome/i', $userAgent)) {
 			$this->tableBrowser["Google Chrome"]++;
 		}
-		elseif (eregi('konqueror', $userAgent)) {
+		elseif (preg_match('/konqueror/i', $userAgent)) {
 			$this->tableBrowser["Konqueror"]++;
 		}
-		elseif (eregi('safari', $userAgent)) {
+		elseif (preg_match('/safari/i', $userAgent)) {
 			$this->tableBrowser["Safari"]++;
 		}
-		elseif (eregi('msie', $userAgent)) {
+		elseif (preg_match('/msie/i', $userAgent)) {
 			$this->tableBrowser["Internet Explorer"]++;
 		}
-		elseif (eregi('mozilla', $userAgent) || eregi('netscape', $userAgent)) {
+		elseif (preg_match('/mozilla/i', $userAgent) || preg_match('/netscape/i', $userAgent)) {
 			$this->tableBrowser["Mozilla/Netscape"]++;
 		}
 		else {
@@ -56,46 +60,52 @@ class Stats {
 		}
 		
 		// OS Calculation
-		if (eregi('webos', $userAgent)) {
+		if (preg_match('/webos/i', $userAgent)) {
 			$this->tableOS["Palm webOS"]++;
 		}
-		if (eregi('windows phone', $userAgent)) {
+		elseif (preg_match('/windows phone/i', $userAgent)) {
 			$this->tableOS["Palm webOS"]++;
 		}
-		elseif (eregi('blackberry', $userAgent)) {
+		elseif (preg_match('/blackberry/i', $userAgent)) {
 			$this->tableOS["Blackberry"]++;
 		}
-		elseif (eregi('android', $userAgent)) {
+		elseif (preg_match('/android/i', $userAgent)) {
 			$this->tableOS["Android"]++;
 		}
-		elseif (eregi('symbian', $userAgent)) {
+		elseif (preg_match('/symbian/i', $userAgent)) {
 			$this->tableOS["Symbian"]++;
 		}
-		elseif (eregi('iphone', $userAgent) || eregi('ipod', $userAgent) || eregi('ipad', $userAgent)) {
+		elseif (preg_match('/iphone/i', $userAgent) || preg_match('/ipod/i', $userAgent) || preg_match('/ipad/i', $userAgent)) {
 			$this->tableOS["iOS"]++;
 		}
-		elseif (eregi('win9', $userAgent) || eregi('win32', $userAgent) || eregi('windows 9',$ $userAgent) || eregi('nt 4', $userAgent) || eregi('nt 5.0', $userAgent) || eregi('win3', $userAgent)) {
+		elseif (preg_match('/win9/i', $userAgent) || preg_match('/win32/i', $userAgent) || preg_match('/windows 9/i', $userAgent) || preg_match('/nt 4/i', $userAgent) || preg_match('/nt 5.0/i', $userAgent) || preg_match('/win3/i', $userAgent)) {
 			$this->tableOS["Windows 9.x"]++;
 		}
-		elseif (eregi('nt 5.1', $userAgent) || eregi('nt 5.2', $userAgent) || eregi('nt 5.3', $userAgent) || eregi('nt 5.4', $userAgent) || eregi('nt 5.5', $userAgent)) {
+		elseif (preg_match('/nt 5.1/i', $userAgent) || preg_match('/nt 5.2/i', $userAgent) || preg_match('/nt 5.3/i', $userAgent) || preg_match('/nt 5.4/i', $userAgent) || preg_match('/nt 5.5/i', $userAgent)) {
 			$this->tableOS["Windows XP"]++;
 		}
-		elseif (eregi('nt 6.0', $userAgent)) {
+		elseif (preg_match('/nt 6.0/i', $userAgent)) {
 			$this->tableOS["Windows Vista"]++;
 		}
-		elseif (eregi('nt 6.1', $userAgent)) {
+		elseif (preg_match('/nt 6.1/i', $userAgent)) {
 			$this->tableOS["Windows 7"]++;
 		}
-		elseif (eregi('linux', $userAgent) || eregi('suse', $userAgent) || eregi('ubuntu', $userAgent) || eregi('redhat', $userAgent) || eregi('debian', $userAgent) || eregi('gentoo', $userAgent)) {
+		elseif (preg_match('/nt 6.2/i', $userAgent) || preg_match('/nt 6.3/i', $userAgent)) {
+			$this->tableOS["Windows 8"]++;
+		}
+		elseif (preg_match('/nt 10/i', $userAgent)) {
+			$this->tableOS["Windows 10/11"]++;
+		}
+		elseif (preg_match('/linux/i', $userAgent) || preg_match('/suse/i', $userAgent) || preg_match('/ubuntu/i', $userAgent) || preg_match('/redhat/i', $userAgent) || preg_match('/debian/i', $userAgent) || preg_match('/gentoo/i', $userAgent)) {
 			$this->tableOS["Linux"]++;
 		}
-		elseif (eregi('mac', $userAgent) || eregi('macos', $userAgent) || eregi('mac os', $userAgent)) {
+		elseif (preg_match('/mac/i', $userAgent) || preg_match('/macos/i', $userAgent) || preg_match('/mac os/i', $userAgent)) {
 			$this->tableOS["Mac OS"]++;
 		}
-		elseif (eregi('unix', $userAgent)) {
+		elseif (preg_match('/unix/i', $userAgent)) {
 			$this->tableOS["Unix"]++;
 		}
-		elseif (eregi('solaris', $userAgent) || eregi('SunOS', $userAgent) || eregi('sunos', $userAgent)) {
+		elseif (preg_match('/solaris/i', $userAgent) || preg_match('/SunOS/i', $userAgent) || preg_match('/sunos/i', $userAgent)) {
 			$this->tableOS["Solaris"]++;
 		}
 		else {

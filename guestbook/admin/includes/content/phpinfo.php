@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
@@ -16,14 +16,12 @@ if (@$magic != "0xDEADBEEF")
 	echo "<div class='phpinfodisplay'><style type='text/css'>\n",
 	    join( "\n",
 	        array_map(
-	            create_function(
-	                '$i',
-	                'return ".phpinfodisplay " . preg_replace( "/,/", ",.phpinfodisplay ", $i );'
-	                ),
+	            fn($i) => ".phpinfodisplay " . preg_replace("/,/", ",.phpinfodisplay ", $i),
 	            preg_split( '/\n/', $matches[1] )
 	            )
 	        ),
 	    "</style>\n",
 	    $matches[2],
 	    "\n</div>\n";
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 echo '<div>
 	<div class="title">' . $lang['mysqlInstallation'] . '</div>';
 
@@ -52,14 +52,14 @@ if ($installCheck['hidden'] == 'Lupa') {
 		// Installing
 		
 		require_once '../classes/database/sql.class.php';
-		require_once '../classes/database/mysql.class.php';
+		require_once '../classes/database/mysqli.class.php';
 		
-		$con = new AngoraMySQL();
+		$con = new AngoraMySQLi();
 		$con->setCon($installCheck['host'], $installCheck['username'], $installCheck['password'], $installCheck['database']);
 		$con->connect();
 		
 		$instDone = true;
-		$sqlfile = "sql/angora_1_5_installation.sql";
+		$sqlfile = "sql/angora_2_0_installation.sql";
 
 		$sql = '';
 		if (is_file($sqlfile)) {
@@ -81,7 +81,8 @@ if ($installCheck['hidden'] == 'Lupa') {
 					$sql = preg_replace('/#__/', $installCheck['prefix'], $sql);
 					@$con->modify($sql);
 					
-					if (mysql_error() != "")
+					if ($con->printError() != "")
+						
 						$instDone = false;
 					$sql="";
 				}
@@ -113,7 +114,7 @@ if ($installCheck['hidden'] == 'Lupa') {
 				
 				$savedEmail = base64_encode($installCheck['adminEmail']);
 				$chPaths['backupFolder'] = realpath("../admin/backup");
-				$chPaths['smiliesFolder'] = realpath("../images/custom");
+				$chPaths['smiliesFolder'] = realpath("../images/smilies");
 				$chPaths['langFolder'] = realpath("../languages");
 				$chPaths['themesFolder'] = realpath("../themes");
 				
@@ -125,8 +126,8 @@ if ($installCheck['hidden'] == 'Lupa') {
 				if ($lang['dir'] == 'rtl')
 					$themeRetro = 'retroRTL';
 				
-				$queryMsg = "INSERT INTO " . $dbTables['config'] . " (id,offline,offlineMessage,guestbookLang,guestbookTheme,mobileTheme,pagesFormat,numPostsPerPage,adminLang,dateFormat,gbTitle,checkEmail,maxCharField,maxCharMsg,floodTime,moderateMsg,checkCaptcha,headTitle,resizeImg,imgWidth,imgHeight,metaKeywords,metaDescription,backupFolder,smiliesFolder,langFolder,themesFolder,receiveEmailNotification,email,autoCensor,debug) VALUES 
-				(0, '0', 'The guestbook is offline!', '" . secureVar($instLang, 'sql') . "', '" . secureVar($themeRetro, 'sql') . "', 'mobile', 'several', '5', '" . secureVar($instLang, 'sql') . "', 'd-m-Y H:i:s', 'My guestbook', '0', '35', '500', '30', '0', '" . secureVar($checkCaptcha, 'sql') . "', 'Angora 1.0', '0', '100', '100', '', '', '" . secureVar($chPaths['backupFolder'], 'sql') . "', '" . secureVar($chPaths['smiliesFolder'], 'sql') . "', '" . secureVar($chPaths['langFolder'], 'sql') . "', '" . secureVar($chPaths['themesFolder'], 'sql') . "', '0', '" . secureVar($savedEmail, 'sql') . "', '0', '0')";
+				$queryMsg = "INSERT INTO " . $dbTables['config'] . " (id,offline,offlineMessage,guestbookLang,guestbookTheme,mobileTheme,pagesFormat,numPostsPerPage,adminLang,dateFormat,gbTitle,checkEmail,maxCharField,maxCharMsg,floodTime,moderateMsg,checkCaptcha,headTitle,resizeImg,imgWidth,imgHeight,metaKeywords,metaDescription,backupFolder,smiliesFolder,langFolder,themesFolder,receiveEmailNotification,email,autoCensor,debug,dateSort) VALUES 
+				(0, '0', 'The guestbook is offline!', '" . secureVar($instLang, 'sql') . "', '" . secureVar($themeRetro, 'sql') . "', 'mobile', 'several', '5', '" . secureVar($instLang, 'sql') . "', 'd-m-Y H:i:s', 'My guestbook', '0', '35', '500', '30', '0', '" . secureVar($checkCaptcha, 'sql') . "', 'Angora 2.0', '0', '100', '100', '', '', '" . secureVar($chPaths['backupFolder'], 'sql') . "', '" . secureVar($chPaths['smiliesFolder'], 'sql') . "', '" . secureVar($chPaths['langFolder'], 'sql') . "', '" . secureVar($chPaths['themesFolder'], 'sql') . "', '0', '" . secureVar($savedEmail, 'sql') . "', '0', '0', 'desc')";
 				
 				if ($con->modify($queryMsg)) {
 					echo "<div class=\"msgSuccess\">" . $lang['generalConfigurationDone'] . "</div>";

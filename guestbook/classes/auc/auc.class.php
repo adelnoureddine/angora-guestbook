@@ -155,17 +155,15 @@ class auc {
 					
 					// Check if zip... then unzip it
 					if (in_array($files['type'], $this->zip_mime_types)) {
-						include_once '../classes/dUnzip/dUnzip2.inc.php';
-						include_once '../classes/dUnzip/dZip.inc.php';
-						$zip = new dUnzip2($this->upload_dir.$files['name']);
-						$zip->debug = false;
-						$zip->getList();
-						$zip->unzipAll($this->upload_dir);
-						$zip->close();
-						@unlink($this->upload_dir.$files['name']);
+						
+						$zip = new ZipArchive();
+						if ($zip->open($this->upload_dir.$files['name']) === TRUE) {
+							$zip->extractTo($this->upload_dir);
+							$zip->close();
+							unlink($this->upload_dir.$files['name']);
+						}
 					}
 					
-				
 					
 				} catch (TrigerErrorException $e) {
 					$errors[$files['name']][] = $e->Message();
@@ -193,8 +191,8 @@ class auc {
  *
  */
 class TrigerErrorException extends Exception {
-	protected $file = "";
-	public function __construct($message, $file = "", $code = 0) {
+	protected string $file = "";
+	public function __construct(string $message,string  $file = "",int $code = 0) {
 		$this->file = $file;
    		parent::__construct($message, $code);
 	}

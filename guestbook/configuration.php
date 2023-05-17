@@ -8,21 +8,21 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 require_once 'data.php';
 include_once 'classes/error/error.class.php';
 
-$config['mysqlDriver'] = 'mysql';
+$config['mysqlDriver'] = 'mysqli';
 
 require_once 'classes/database/sql.class.php';
 switch ($config['mysqlDriver']) {
 	case 'mysql' :
-		require_once 'classes/database/mysql.class.php';
-		$con = new AngoraMySQL();
+		require_once 'classes/database/mysqli.class.php';
+		$con = new AngoraMySQLi();
 		break;
 	case 'mysqli' :
 		require_once 'classes/database/mysqli.class.php';
 		$con = new AngoraMySQLi();
 		break;
 	default :
-		require_once 'classes/database/mysql.class.php';
-		$con = new AngoraMySQL();
+		require_once 'classes/database/mysqli.class.php';
+		$con = new AngoraMySQLi();
 }
 
 $con->setCon(base64_decode($data['dbHost']),
@@ -86,6 +86,7 @@ foreach ($con->queryResult as $res) {
 	$config['smiliesFolder'] = $res['smiliesFolder'];
 	$config['langFolder'] = $res['langFolder'];
 	$config['themesFolder'] = $res['themesFolder'];
+	$config['dateSort'] = $res['dateSort'];
 
 	$config['receiveEmailNotification'] = $res['receiveEmailNotification'];
 	$config['autoCensor'] = $res['autoCensor'];
@@ -96,7 +97,7 @@ foreach ($con->queryResult as $res) {
 }
 
 $config['angName'] = 'Angora';
-$config['angVersion'] = '1.6.1';
+$config['angVersion'] = '2.0';
 $config['angUrl'] = 'http://aguestbook.sourceforge.net';
 
 $con->close();

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
@@ -152,7 +152,7 @@ $lang['checkCaptcha'] = "إستخدام CAPTCHA?";
 $lang['debug'] = "Debug mode?";
 $lang['reCaptcha'] = "إستخدام reCaptcha?";
 $lang['reCaptchapubk'] = "مفتاح reCaptcha العام";
-$lang['reCaptchaprvk'] = "مفتاح reCaptcha الخاص"
+$lang['reCaptchaprvk'] = "مفتاح reCaptcha الخاص";
 
 $lang['changeLanguages'] = "تعديل اللغات";
 $lang['guestbookLang'] = "لغة دفتر الزوار";
@@ -163,6 +163,9 @@ $lang['guestbookTheme'] = "نمط دفتر الزوار";
 $lang['mobileTheme'] = "النمط الخاص للهواتف النقالة";
 $lang['numPostsPerPage'] = "عدد التوقيعات في كل صفحة";
 $lang['pagesFormat'] = "بنية الصفحات";
+$lang['dateSort'] = "Sort by date";
+$lang['ascending'] = "Ascending";
+$lang['descending'] = "Descending";
 $lang['several'] = "عدّة صفحات";
 $lang['allinone'] = "كلّ التوقيعات في صفحة واحدة";
 $lang['dateFormat'] = "بنية التاريخ";

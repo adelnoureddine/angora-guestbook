@@ -60,9 +60,14 @@ class AngoraMySQLi implements SQL {
 	* Connect to the database
 	* */
 	function connect() {
-		$this->connection = @mysqli_connect($this->datahost, $this->username, $this->userpass, $this->database, 3306);
-		if (! $this->connection)
-			die('Connection error! ' . mysqli_connect_error());
+		try {
+			$this->connection = @mysqli_connect($this->datahost, $this->username, $this->userpass, $this->database, 3306);
+			if (!$this->connection) {
+				throw new Exception('Connection error! ' . mysqli_connect_error());
+			}
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
 	}
 	
 	/**	
@@ -87,7 +92,7 @@ class AngoraMySQLi implements SQL {
 		$this->query = @mysqli_query($this->connection, $queryData);
 		if ($this->query) {
 			$i = 0;
-			while (($row = @mysqli_fetch_array($this->query, MYSQL_ASSOC))) {
+			while (($row = @mysqli_fetch_assoc($this->query))) {
 				$this->queryResult[$i] = $row;
 				$i++;
 			}
@@ -149,6 +154,11 @@ class AngoraMySQLi implements SQL {
 	function getQueriesDebug() {
 		return $this->queriesDebug;
 	}
+
+	function real_escape_string($string) {
+		return mysqli_real_escape_string($this->connection, $string);
+	}
+	
 	
 }
 

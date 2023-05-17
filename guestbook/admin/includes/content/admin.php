@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
@@ -11,7 +11,7 @@ if (@$magic != "0xDEADBEEF")
 	echo '<div class="mainTitle">' . $lang['addAdmins'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'admin\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	if ((! empty($submitId)) && isset($submitId)) {		
 		$adminCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');

@@ -1,9 +1,11 @@
 <?php
+use guestbook\Error;
 
+$magic = isset($magic) ? $magic : "";
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 
-if (($_SESSION['nameField'] == "") || ($_SESSION['messageField'] == "") || ($_SESSION['hiddenField'] == "") || ($_SESSION['captchaField'] == "") || ($_SESSION['emailField'] == "")) {
+if ((!isset($_SESSION['nameField']) || $_SESSION['nameField'] == "") || (!isset($_SESSION['messageField']) || $_SESSION['messageField'] == "") || (!isset($_SESSION['hiddenField']) || $_SESSION['hiddenField'] == "") || (!isset($_SESSION['captchaField']) || $_SESSION['captchaField'] == "") || (!isset($_SESSION['emailField']) || $_SESSION['emailField'] == "")) {
 	session_regenerate_id();
 	$_SESSION['nameField'] = md5(uniqid(rand(), true));
 	$_SESSION['messageField'] = md5(uniqid(rand(), true));
@@ -31,11 +33,11 @@ function showStar(star){
 $boxContent->assign("SCRIPTS", $scriptInclude);
 
 // Check if already send
-$submitId = secureVar($_POST['submit'], 'html');
+$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : "";
 
 $boxContent->assign("FORM_NAME", 'signForm');
 $boxContent->assign("URL_SIGN", 'index.php?a=sign');
-$boxContent->assign("LANG_NAME", $lang['name']);
+$boxContent->assign("LANG_NAME", isset($lang) ? $lang['name'] : "");
 $boxContent->assign("NAME_FIELD", $_SESSION['nameField']);
 $boxContent->assign("LANG_MESSAGE", $lang['message']);
 $boxContent->assign("MESSAGE_FIELD", $_SESSION['messageField']);
@@ -69,7 +71,9 @@ if ((! empty($submitId)) && isset($submitId)) {
 	$signCheck['email'] = secureVar(trim($_POST[$_SESSION['emailField']]), 'html');
 	$signCheck['rating'] = secureVar(trim($_POST['rating']), 'html');
 	$signCheck['message'] = secureVar(trim($_POST[$_SESSION['messageField']]), 'html');
-	$signCheck['captcha'] = secureVar(trim($_POST[$_SESSION['captchaField']]), 'html');
+	if (array_key_exists($_SESSION['captchaField'], $_POST)) {
+		$signCheck['captcha'] = secureVar(trim($_POST[$_SESSION['captchaField']]), 'html');
+	} 
 	$signCheck['hiddenField'] = secureVar(trim($_POST[$_SESSION['hiddenField']]), 'html');
 
 	if ($signCheck['hiddenField'] != '') {
@@ -99,8 +103,8 @@ if ((! empty($submitId)) && isset($submitId)) {
 	if ($config['reCaptcha']) {
 		$resp = recaptcha_check_answer ($config['reCaptchaprvk'],
 								$_SERVER["REMOTE_ADDR"],
-								$_POST["recaptcha_challenge_field"],
-								$_POST["recaptcha_response_field"]);
+								isset($_POST["recaptcha_challenge_field"]) ? $_POST["recaptcha_challenge_field"] : '',
+								isset($_POST["recaptcha_response_field"]) ? $_POST["recaptcha_response_field"] : '');
 		if (!$resp->is_valid)
 			$errorField .= $lang['captchaError'] . '<br />';
 	}
@@ -126,7 +130,7 @@ if ((! empty($submitId)) && isset($submitId)) {
 		$errorField .= $lang['message'] . ' ' . $lang['isBig'] . ' (' . strlen($signCheck['message']) . '/' . $config['maxCharMsg'] . ')<br />';
 
 	$con->connect();
-	$con->getRows("Select ip from " . $dbTables['ip'] . ";");
+	$con->getRows("Select ip from " . (isset($dbTables) ? $dbTables['ip'] : "") . ";");
 	if ($con->getNumRows() > 0) {
 		foreach ($con->queryResult as $res) {
 			if (preg_match("/^" . $res['ip'] . "/", $_SERVER['REMOTE_ADDR'])) {
@@ -282,7 +286,7 @@ foreach ($ratingArray as $id_rate => $rate_value)
 }
 
 if ($config['checkCaptcha'] && !$config['reCaptcha']) {
-	$boxContent->assign("CAPTCHA_FIELD", $_SESSION['captchaField']);
+	$boxContent->assign("CAPTCHA_FIELD", isset($_SESSION['captchaField']) ? $_SESSION['captchaField'] : "");
 	$boxContent->assign("LANG_CAPTCHA", $lang['captcha']);
 	$boxContent->assign("CAPTCHA", $captcha);
 	$boxContent->parse('sign.signForm.captcha');

@@ -366,7 +366,7 @@ class XTemplate {
 		// From SF Feature request 1202027
 		// Kenneth Kalmer
 		$this->tpldir = $tpldir;
-		if (defined('XTPL_DIR') && empty($this->tpldir)) {
+		if (defined('XTPL_DIR') && !isset($this->tpldir)) {
 			$this->tpldir = XTPL_DIR;
 		}
 
@@ -906,9 +906,10 @@ class XTemplate {
      */
 	public function scan_globals () {
 
-		reset($GLOBALS);
+        $globals = $GLOBALS;
+		reset($globals);
 
-		foreach ($GLOBALS as $k => $v) {
+		foreach ($globals as $k => $v) {
 			$GLOB[$k] = $v;
 		}
 

@@ -34,29 +34,21 @@ function startCompression() {
  *
  * @param $var the string to sanitize
  * @param $type 'html' if the string should be published, 'sql' if it should be send to a sql query
- * @return a sanitized version of the $var string
+ * @return string a sanitized version of the $var string
  */
+
 function secureVar($var, $type) {
 	global $con;
+	
 	switch ($type) {
 		case 'sql' :
-			if (get_magic_quotes_gpc())
-				$var = stripslashes($var);
-			if (function_exists("mysql_real_escape_string"))
-				$var = mysql_real_escape_string($var);
-			else
-				$var = addslashes($var);
+				$var = $con->real_escape_string($var);
 			break;
 		case 'html' :
-			$var = htmlspecialchars($var, ENT_QUOTES);
+				$var = htmlspecialchars($var, ENT_QUOTES);
 			break;
 		default :
-			if (get_magic_quotes_gpc())
-				$var = stripslashes($var);
-			if (function_exists("mysql_real_escape_string"))
-				$var = mysql_real_escape_string($var);
-			else
-				$var = addslashes($var);
+				$var = $con->real_escape_string($var);
 	}
 	return $var;
 }

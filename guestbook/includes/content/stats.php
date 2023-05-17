@@ -8,7 +8,7 @@ $boxContent = new XTemplate('./themes/' . $config['guestbookTheme'] . '/content/
 include_once 'classes/manage/stats.class.php';
 $stats = new Stats();
 
-$durationId = secureVar($_GET['d'], 'html');
+$durationId = isset($_GET['d']) ? secureVar($_GET['d'], 'html') : "";
 $lastMonthSeconds = time() - 2629743;
 
 if ($durationId == 'lastmonth') {
@@ -28,6 +28,13 @@ $totalNumber = 0;
 $totalFlags = $con->getNumRows();
 
 if ($totalFlags > 0) {
+	include_once 'classes/manage/browsers.class.php';
+	include_once 'classes/manage/os.class.php';
+	include_once 'classes/manage/statistics.class.php';
+	
+	$browser = new Browsers();
+	$os = new Os();
+	
 
 	if ($con->getNumRows() > 0) {
 		foreach ($con->queryResult as $res) {
@@ -41,6 +48,7 @@ if ($totalFlags > 0) {
 		if ($num > 0) {
 			$percentage = number_format((($num * 100) / $totalNumber), 2);
 			
+			$boxContent->assign("URL_OS", "index.php?os=" . $os->getOsCode($tabos));
 			$boxContent->assign('OS_NAME', $tabos);
 			$boxContent->assign('NUM_OS', $num);
 			$boxContent->assign('PER_OS', $percentage);
@@ -52,6 +60,7 @@ if ($totalFlags > 0) {
 		if ($num > 0) {
 			$percentage = number_format((($num * 100) / $totalNumber), 2);
 			
+			$boxContent->assign("URL_BROWSER", "index.php?br=" . $browser->getBrowserCode($tabos));
 			$boxContent->assign('BROWSER_NAME', $tabos);
 			$boxContent->assign('NUM_BROWSER', $num);
 			$boxContent->assign('PER_BROWSER', $percentage);
@@ -88,8 +97,32 @@ if ($totalFlags > 0) {
 			}
 		}
 	}
+ 
+	if($durationId == 'lastmonth')
+		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' and date>=" . $lastMonthSeconds . " group by rating order by rating desc;";
+	else
+		$queryMsg = "select rating, count(rating) as nb_rating from " . $dbTables['posts'] . " where publish='1' group by rating order by rating desc;";
+	$con->connect();
+	$con->getRows($queryMsg);
+	if ($con->getNumRows() > 0) {
+		
+		foreach ($con->queryResult as $res) {
+			if ($res['rating'] != '') {
+				$percentage = number_format((($res['nb_rating'] * 100) / $totalFlags), 2);
+				
+				$boxContent->assign("RATE_ICON", "images/stars/" . $res['rating'] . ".gif");
+				$boxContent->assign("RATE_ID", $res['rating']);
+				$boxContent->assign("URL_RATE", "index.php?ra=" . $res['rating']);
+				$boxContent->assign("NUM_RATE", $res['nb_rating']);
+				//$boxContent->assign("NAME_RATE",$res['rating']);
+				$boxContent->assign('PER_RATE', $percentage);
+				$boxContent->parse('stats.stats_posts.rateStats');
+			}
+		}
+	}
 	
 	$boxContent->assign('TOTAL_FLAGS', $totalFlags);
+	$boxContent->assign('LANG_RATE', $lang['rating']);
 	$boxContent->assign('LANG_COUNTRY', $lang['country']);
 	$boxContent->assign('LANG_NB_POSTS', $lang['nbPosts']);
 	$boxContent->assign('LANG_TOTAL', $lang['total']);

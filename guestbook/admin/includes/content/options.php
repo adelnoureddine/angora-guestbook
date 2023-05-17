@@ -1,12 +1,12 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
 	echo '<div class="mainTitle">' . $lang['options'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'options\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	if ((! empty($submitId)) && isset($submitId)) {
 		$optionsCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
@@ -27,9 +27,16 @@ if (@$magic != "0xDEADBEEF")
 			foreach ($arrayValues as $id => $value) {
 				$optionsCheck['' .  $value . ''] = secureVar(trim($_POST['' .  $value . '']), 'html');
 				if ($checkVars) {
-					if (($optionsCheck['' .  $value . ''] == '') ||  empty($optionsCheck['' .  $value . '']))
-						if ($optionsCheck['' .  $value . ''] != 0)
-							$errorField .= $lang['' .  $value . ''] . ' ' . $lang['isEmpty'] . '<br />';
+					if ($value == "reCaptchapubk" || $value == "reCaptchaprvk") {
+					  if ($optionsCheck["reCaptcha"]) {
+						$errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? 
+						$lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+					  }
+					} else {
+						if($value != 'timezone'){
+							$errorField .= (($optionsCheck[$value] == '' || empty($optionsCheck[$value])) && $optionsCheck[$value] != 0) ? $lang[$value] . ' ' . $lang['isEmpty'] . '<br />' : '';
+						}
+					}
 				}
 				if ($errorField == '') {
 					$con->connect();
@@ -72,7 +79,7 @@ if (@$magic != "0xDEADBEEF")
 				doUpdate(array("0" => "guestbookLang", "1" => "adminLang"), 1);
 				break;
 			case 'visualeffects' :
-				doUpdate(array("0" => "guestbookTheme", "1" => "mobileTheme", "2" => "pagesFormat", "3" => "numPostsPerPage", "4" => "dateFormat", "5" => "timezone"), 1);
+				doUpdate(array("0" => "guestbookTheme", "1" => "mobileTheme", "2" => "pagesFormat", "3" => "dateSort", "4" => "numPostsPerPage", "5" => "dateFormat", "6" => "timezone"), 1);
 				break;
 			case 'gboffline' :
 				doUpdate(array("0" => "offline", "1" => "offlineMessage"), 1);
@@ -83,7 +90,7 @@ if (@$magic != "0xDEADBEEF")
 			default : ;
 		}
 		
-		if ($errorField != '') {
+		if (isset($errorField) && $errorField != '') {
 			echo "<div class=\"msgError\">$errorField</div>";
 		}
 	}
@@ -375,7 +382,21 @@ if (@$magic != "0xDEADBEEF")
 						echo '<option value="several">' . $lang['several'] . '</option>';
 					}
 					echo '</select></td>
+				</tr>
+				<tr>
+					<td>' . $lang['dateSort'] . '</td>
+					<td><select name="dateSort">';
+					if ($config['dateSort'] == 'asc') {
+						echo '<option value="asc">' . $lang['ascending'] . '</option>';
+						echo '<option value="desc">' . $lang['descending'] . '</option>';
+					}
+					elseif ($config['dateSort'] == 'desc') {
+						echo '<option value="desc">' . $lang['descending'] . '</option>';
+						echo '<option value="asc">' . $lang['ascending'] . '</option>';
+					}
+					echo '</select></td>
 				</tr>';
+				
                 showTableRow('numPostsPerPage', 'input', 5);
                 showTableRow('dateFormat', 'input', 10);
                 showTableRow('timezone', 'input', 10);

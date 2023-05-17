@@ -1,5 +1,5 @@
 <?php
-
+use guestbook\Error;
 if (@$magic != "0xDEADBEEF")
 	die("This file cannot be executed directly");
 	
@@ -11,7 +11,7 @@ if (@$magic != "0xDEADBEEF")
 	echo '<div class="mainTitle">' . $lang['advancedOptions'] . '</div>';
 	echo '<div class="helpPopup ' . $alignHelp . '"><a href="#" onclick="openHelp(\'advOptions\');">' . $lang['help'] . '</a></div>';
 	
-	$submitId = secureVar($_POST['submit'], 'html');
+	$submitId = isset($_POST['submit']) ? secureVar($_POST['submit'], 'html') : '';
 	
 	if ((! empty($submitId)) && isset($submitId)) {
 		$optionsCheck['hidden'] = secureVar(trim($_POST['hiddenField']), 'html');
@@ -137,7 +137,7 @@ if (__FILE__ == \$_SERVER['SCRIPT_FILENAME'])
 	
 	echo '<table border="0" width="100%"><tr><td>';
 	
-	$generatePaths = secureVar($_GET['paths'], 'html');
+	$generatePaths = isset($_GET['paths']) ? secureVar($_GET['paths'], 'html') : '';
 	
 	$chPaths['backupFolder'] = $config['backupFolder'];
 	$chPaths['smiliesFolder'] = $config['smiliesFolder'];
@@ -146,7 +146,7 @@ if (__FILE__ == \$_SERVER['SCRIPT_FILENAME'])
 	
 	if ((! empty($generatePaths)) && isset($generatePaths)) {
 		$chPaths['backupFolder'] = realpath("./backup");
-		$chPaths['smiliesFolder'] = realpath("../images/custom");
+		$chPaths['smiliesFolder'] = realpath("../images/smilies");
 		$chPaths['langFolder'] = realpath("../languages");
 		$chPaths['themesFolder'] = realpath("../themes");
 	}
